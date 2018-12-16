@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "InsertProduct";
+    Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@*@using X.PagedList.Mvc;*@
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.ProductCategoryViewModel>
+@* Thêm sửa xóa sản phẩm *@
+<div class="content">
+    <div class="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <div class="container-login100-form-btn">
+                                <a asp-action="InsertProduct" asp-controller="Product" class="waves-effect btn btn-primary"><i class="fas fa-plus"></i><span> Thêm sản phẩm </span></a>
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn btn display-none btn-primary btn-cencal">Hủy</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Danh sách sản phẩm *@
+<div class="content mt-0">
+    <div class="page-content-wrapper pt-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Màu sắc</th>
+                                        <th>Giá bán</th>
+                                        <th>Số lượng</th>
+                                        <th>Tình trạng</th>
+                                        <th>Đánh giá</th>
+                                        <th>Sản phẩm mới</th>
+                                        <th>Mô tả</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <partial name="_AllProductListPartial" />
+                                </tbody>
+                            </table>
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

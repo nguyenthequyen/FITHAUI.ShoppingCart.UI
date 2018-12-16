@@ -1,0 +1,61 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+@{
+    Layout = "_LayoutLogin";
+}
+<div class="container-login100">
+    <div class="wrap-login100">
+        <div class="login100-form-title imge-bg">
+            <span class="login100-form-title-1">
+                Sign In
+            </span>
+        </div>
+        <form class="login100-form validate-form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="wrap-input100 validate-input m-b-26" >
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="flex-sb-m w-full p-b-30">
+                <div class="contact100-form-checkbox">
+                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                    <label class="label-checkbox100" for="ckb1">
+                        Remember me
+                    </label>
+                </div>
+
+                <div>
+                    <a href="#" class="txt1">
+                        Forgot Password?
+                    </a>
+                </div>
+            </div>
+
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" type="submit">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }*@

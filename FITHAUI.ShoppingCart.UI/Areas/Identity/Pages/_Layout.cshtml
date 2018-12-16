@@ -1,0 +1,212 @@
+﻿<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from themesbrand.com/canvab/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Dec 2018 10:05:23 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>DANNY - SHOP</title>
+    <meta content="Admin Dashboard" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App Icons -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- Basic Css files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="~/css/bootstrapadmin.min.css" rel="stylesheet" />
+    <link href="~/css/icons.css" rel="stylesheet" />>
+    <link href="~/css/styleadmin.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,500,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700pattern.png" rel="stylesheet">
+    <link href="~/css/csscustom.css" rel="stylesheet" />
+</head>
+
+<body class="fixed-left">
+    @{
+        Html.RenderPartialAsync("_Alerts");
+    }
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="sk-three-bounce">
+                <div class="sk-child sk-bounce1"></div>
+                <div class="sk-child sk-bounce2"></div>
+                <div class="sk-child sk-bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="">
+                    <a asp-action="Index" asp-controller="Home" class="logo text-center">DANNY SHOP</a>
+                    <!--<a href="index.html" class="logo"><img src="/images/logo.png" height="14" alt="logo"></a>-->
+                </div>
+            </div>
+            <nav class="navbar-custom">
+                <!-- Search input -->
+                <div class="search-wrap" id="search-wrap">
+                    <div class="search-bar">
+                        <input class="search-input" type="search" placeholder="Search" />
+                        <a href="#" class="close-search toggle-search" data-target="#search-wrap">
+                            <i class="mdi mdi-close-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <ul class="list-inline float-right mb-0">
+                    <!-- Search -->
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link waves-effect toggle-search" href="#" data-target="#search-wrap">
+                            <i class="mdi mdi-magnify noti-icon"></i>
+                        </a>
+                    </li>
+                    <!-- Fullscreen -->
+                    <li class="list-inline-item dropdown notification-list hide-sm">
+                        <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-fullscreen noti-icon"></i>
+                        </a>
+                    </li>
+                    <!-- language-->
+                    <li class="list-inline-item dropdown notification-list hide-sm">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect text-muted" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            English <img src="/images/flags/us_flag.jpg" class="ml-2" height="16" alt="" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right language-switch">
+                            <a class="dropdown-item" href="#"><img src="/images/flags/germany_flag.jpg" alt="" height="16" /><span> German </span></a>
+                            <a class="dropdown-item" href="#"><img src="/images/flags/italy_flag.jpg" alt="" height="16" /><span> Italian </span></a>
+                            <a class="dropdown-item" href="#"><img src="/images/flags/french_flag.jpg" alt="" height="16" /><span> French </span></a>
+                            <a class="dropdown-item" href="#"><img src="/images/flags/spain_flag.jpg" alt="" height="16" /><span> Spanish </span></a>
+                            <a class="dropdown-item" href="#"><img src="/images/flags/russia_flag.jpg" alt="" height="16" /><span> Russian </span></a>
+                        </div>
+                    </li>
+                    <!-- notification-->
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="ion-ios7-bell noti-icon"></i>
+                            <span class="badge badge-danger noti-icon-badge"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5>Notification (5)</h5>
+                            </div>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
+                                <p class="notify-details"><b>Your order is placed</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
+                            </a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-success"><i class="mdi mdi-message"></i></div>
+                                <p class="notify-details"><b>New Message received</b><small class="text-muted">You have 87 unread messages</small></p>
+                            </a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
+                                <p class="notify-details"><b>Your item is shipped</b><small class="text-muted">It is a long established fact that a reader will</small></p>
+                            </a>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                View All
+                            </a>
+                        </div>
+                    </li>
+                    <!-- User-->
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img src="/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
+                            <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
+                            <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- Menu Collapse Button -->
+                <button type="button" class="button-menu-mobile open-left waves-effect">
+                    <i class="ion-navicon"></i>
+                </button>
+                <div class="clearfix"></div>
+            </nav>
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a asp-action="Index" asp-controller="Dashboard" class="waves-effect"><i class="mdi mdi-view-dashboard"></i><span> Thống kê </span></a>
+                        </li>
+                        <li class="has_sub">
+                            <a class="waves-effect"><i class="fas fa-database"></i> <span> Quản lý sản phẩm <span class="float-right"><i class="mdi mdi-chevron-right"></i></span> </span> </a>
+                            <ul class="list-unstyled">
+                                <li><a asp-action="GetAllProductList" asp-controller="Product" class="waves-effect"><i class="fas fa-list-ul"></i><span> Danh sách sản phẩm </span></a></li>
+                                @*<li><a asp-action="InsertProduct" asp-controller="Product" class="waves-effect"><i class="fas fa-plus"></i><span> Thêm sản phẩm </span></a></li>*@
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a class="waves-effect"><i class="fas fa-user-cog"></i> <span> Quản lý tài khoản <span class="float-right"><i class="mdi mdi-chevron-right"></i></span> </span> </a>
+                            <ul class="list-unstyled">
+                                <li><a href="ui-buttons.html">Buttons</a></li>
+                                <li><a href="ui-cards.html">Cards</a></li>
+                                <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
+                                <li><a href="ui-modals.html">Modals</a></li>
+                                <li><a href="ui-images.html">Images</a></li>
+                                <li><a href="ui-alerts.html">Alerts</a></li>
+                                <li><a href="ui-progressbars.html">Progress Bars</a></li>
+                                <li><a href="ui-dropdowns.html">Dropdowns</a></li>
+                                <li><a href="ui-navs.html">Navs</a></li>
+                                <li><a href="ui-pagination.html">Pagination</a></li>
+                                <li><a href="ui-popover-tooltips.html">Popover & Tooltips</a></li>
+                                <li><a href="ui-badge.html">Badge</a></li>
+                                <li><a href="ui-carousel.html">Carousel</a></li>
+                                <li><a href="ui-video.html">Video</a></li>
+                                <li><a href="ui-typography.html">Typography</a></li>
+                                <li><a href="ui-sweet-alert.html">Sweet-Alert</a></li>
+                                <li><a href="ui-grid.html">Grid</a></li>
+                                <li><a href="ui-nestable.html">Nestable</a></li>
+                                <li><a href="ui-alertify.html">Alertify</a></li>
+                                <li><a href="ui-rangeslider.html">Range Slider</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- end sidebarinner -->
+        </div>
+        <div class="content-page">
+            <!-- Start content -->
+            @RenderBody()
+        </div>
+        <!-- Left Sidebar End -->
+    </div>
+    <!-- END wrapper -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/modernizr.min.js"></script>
+    <script src="~/js/jquery.slimscroll.js"></script>
+    <script src="~/js/waves.js"></script>
+    <script src="~/js/jquery.nicescroll.js"></script>
+    <script src="~/js/jquery.scrollTo.min.js"></script>
+    <script src="~/js/excanvas.js"></script>
+    <script src="~/js/jquery.knob.js"></script>
+    <script src="~/lib/canvasjs/canvasjs.min.js"></script>
+    <script src="~/lib/canvasjs/jquery.canvasjs.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/app.js"></script>
+</body>
+<!-- Mirrored from themesbrand.com/canvab/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Dec 2018 10:05:24 GMT -->
+</html>

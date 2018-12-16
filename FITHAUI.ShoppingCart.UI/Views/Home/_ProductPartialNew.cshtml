@@ -1,0 +1,24 @@
+﻿<div class="item">
+    <span class="new">New</span>
+    <ul class="viewcart">
+        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Giỏ hàng"><i class="fa fa-cart-plus"></i></a></li>
+        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Yêu thích"><i class="fa fa-heart"></i></a></li>
+        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fa fa-eye"></i></a></li>
+    </ul>
+    <a href="#">
+        <img src="~/images/Product/@Model.ProductImage" alt="shirt" class="normal">
+        <img src="~/images/Product/@Model.ProductImage" alt="shirt" class="hoverimg">
+    </a>
+    <ul class="rating">
+        @for (int i = 0; i < Model.ProductRatting; i++)
+        {
+            <li class="active"><i class="fa fa-star"></i></li>
+        }
+        @for (int i = 0; i < 5 - Model.ProductRatting; i++)
+        {
+            <li class=""><i class="fa fa-star"></i></li>
+        }
+    </ul>
+    <p>@Model.ProductName</p>
+    <p class="price"><span>@Model.ProductPrice</span><span class="del">@Model.ProductPrice</span></p>
+</div>

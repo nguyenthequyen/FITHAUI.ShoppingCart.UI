@@ -1,0 +1,16 @@
+﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.ProductCategoryViewModel>
+@{
+    var groupedList = from ca in Model
+                      group ca by ca.CategoryId into depGroup
+                      orderby depGroup.Key ascending
+                      select depGroup;
+
+    foreach (var group in groupedList)
+    {
+        foreach (var item in group.GroupBy(x => x.CategoryName))
+        {
+            <a asp-action="GetProductByCategoryId" asp-controller="Product" asp-route-categoryId="@group.Key"> @item.Key</a>
+        }
+    }
+}
+

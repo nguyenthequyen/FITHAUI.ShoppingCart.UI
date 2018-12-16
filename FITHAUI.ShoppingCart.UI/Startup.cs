@@ -22,7 +22,12 @@ namespace FITHAUI.ShoppingCart.UI
             Configuration = configuration;
         }
 
+        public Startup(IHostingEnvironment evm)
+        {
+            Configuration = new ConfigurationBuilder().SetBasePath(evm.ContentRootPath).AddJsonFile("appsettings.json").Build();
+        }
         public IConfiguration Configuration { get; }
+        public static string ConnectionString { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,6 +44,14 @@ namespace FITHAUI.ShoppingCart.UI
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -60,14 +73,20 @@ namespace FITHAUI.ShoppingCart.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseAuthentication();
-
+            ConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                   name: "Dashboard",
+                   template: "{controller=Dashboard}/{action=Index}/{id?}");
+                routes.MapRoute(
+                  name: "InsertProduct",
+                  template: "{controller=Product}/{action=InsertProduct}/{id?}");
             });
         }
     }

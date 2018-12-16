@@ -1,0 +1,17 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+.imge-bg {
+    background-image: url('../images/bg-01.jpg');
+}
+
+.positon-fixed {
+    position: fixed;
+    z-index: 99999;
+}
+
+.ul-display-gird {
+    display: grid;
+}

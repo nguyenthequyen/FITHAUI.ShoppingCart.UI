@@ -1,0 +1,23 @@
+﻿@{ 
+    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    ViewData["Title"] = "Quản lý thông tin cá nhân";
+}
+<title>@ViewData["Title"]</title>
+@*<h2>Manage your account</h2>*@
+
+<div>
+    @*<h4>Change your account settings</h4>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+@* TODO: Sửa validate Script Ignore Layout *@
+@*@section Scripts {
+    @RenderSection("Scripts", required: false)
+}*@

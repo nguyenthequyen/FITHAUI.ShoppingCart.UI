@@ -1,0 +1,18 @@
+.heading{background: rgba(0, 0, 0, 0) url("images/patternpurple.png") repeat-x scroll left bottom;}
+
+.switch-color .icon,.circle,.button,.fixbutton li a i,.fixbutton li a span,.page li .active,.menu,.menu .submenus ul li:first-child:after,.slider .carousel-indicators .active,.homebanner .box:hover .button,.product .new,.product .owl-nav .owl-prev,.product .owl-nav .owl-next,.product .viewcart li i,.panel-group .panel-heading a,.midhead .shopdata .cartbutton a,.menu ul li a:hover,.menu ul li.active a,.support i,.testimonial .owl-dot.active,.footheading:after,#newsletter .close,#views .close,.lcate ul.color li input[type="radio"]:checked + label::after, .lcate ul li label:hover:after,.lcatesize ul li input[type="radio"]:checked + label, .lcatesize ul li:hover label,.blogsidebox .tag ul li a:hover,.lcate .irs-bar, .lcate .irs-bar-edge,.lcate .irs-from, .lcate .irs-to, .irs-single,.checkout .checkbox:before,.checkout .radio:before,.cart table td ul li:last-child button,.newsletter,#categorie .modal-header,.leftmenu ul li:first-child,.leftmenu .submenus ul li:first-child:after,.boxslide .owl-dot.active,.home4 .testimonial .home4_car{background-color: #6054c2;color: #fff;}
+
+.button:hover,.fixbutton li a:hover i,.fixbutton li a:hover span,.fixbutton li a i:hover,.fixbutton li a span:hover ~ i,.homebanner .box:hover .button:hover,.page li a:hover,.menu ul li a:hover,.menu ul li a.active,.panel-group .panel-heading a:hover,.midhead .shopdata .cartbutton a:hover,.midhead .shopdata .cartbutton a:first-child:hover,.product .viewcart li:hover i,.product .owl-nav .owl-prev:hover,.product .owl-nav .owl-next:hover,.product .viewcart li:hover i,.support .box:hover i,.newsletter input[type="submit"]:hover,#newsletter .close:hover,#views .close:hover,.cart .endbutton a:first-child:hover,.newsletter input[type="submit"]{background-color: #3e339f;color: #fff;}
+
+a:hover,a:focus,.tophead ul li a i,.tophead ul li a:hover,.midhead button:hover i,.midhead .cartbox i,.midhead .cartbox:hover i,.midhead .cartbox .shopdata i:hover,.menu .submenus ul li a:hover,.menu ul .singlesub .submenus ul li:first-child a:hover,.slider .carousel-control:hover,.homebanner .box:hover .overlay p,.product .rating li:hover,.product .rating li.active,.product .rating li:hover,.product .rating li.active,.blog .overlay ul li a:hover,.blog .read:hover,.blog .overlay ul li a:hover,.blog .overlay ul li a i,.blog .read:hover,.newsletter ul li a:hover,.footer .list-with-icon li i,.copyright a,.breadcrumb ul li,.about .left li:before,.about .legend .name,.lcate ul.color li input[type="radio"]:checked + label,.iconbar li a.active,.warranty .inheading i,.help .box i,.blogsidebox .post .date,.blogsidebox .cat li a:hover,.lcate ul li.open a.active,.checkout ul li.active a,.checkout .secure li i,.incategory .iconbar li a.active,.detail .detailtab .rating li.active,.delivery .dbox i,.new_arrival .woman_arrival h2{color: #6054c2;}
+
+.panel-group a:before{border: 8px solid #6054c2;border-color: #6054c2 transparent transparent transparent;}
+
+.product .tabdata .rating li a:hover,.product .tabdata .rating li.active a,.product .tabdata .ldata li a:hover,.product .tabdata .ldata li.active a{color: #6054c2;border-bottom-color: #6054c2;}
+
+.about .legend .owl-prev:hover, .about .legend .owl-next:hover,.testimonial .tbox{border-color: #6054c2;background-color: #6054c2;color: #fff;}
+
+.blogsidebox h4,blockquote{border-left-color: #6054c2;}
+
+.irs-from::after, .irs-to::after, .irs-single::after{border-top-color:#6054c2;}
+.team .figcaption{background: #6054c2 !important;opacity: 0.8;}

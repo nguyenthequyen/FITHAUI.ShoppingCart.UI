@@ -1,0 +1,41 @@
+
+ /*-------------
+Coming Soon 
+---------------*/
+body{background-image: url("images/bg.jpg");background-repeat: no-repeat;background-size: cover;height: 100vh;text-align: center;margin: 0 auto;}
+ .container,.soonbox{height: 100%;}
+.soonbox{background: rgba(0,0,0,0.3);padding: 15px 15px 30px;width: 100%;text-align: center;border-radius: 5px;position: relative;}
+.soonbox form{margin-top: 30px;margin-bottom: 20px;position: relative;}
+.soonbox input[type="email"]{background: rgba(255,255,255,1);border: medium none;padding: 10px 40px 10px 15px;width: 100%;font: 600 14px 'Open Sans',sans-serif;color: #000;}
+.soonbox input[type="email"]::-moz-placeholder{color: #000;opacity: 1;}
+.soonbox input[type="email"]::-webkit-placeholder{color: #000;opacity: 1;}
+.soonbox button{position: absolute;right: 0;padding: 9px 15px 10px;background: rgb(149,196,31);color: #000;border: none;transition: all 500ms ease;}
+.soonbox button:hover{background: #ccc;transition: all 500ms ease;}
+.soonbox img{padding: 50px 0 30px;}
+.soonbox p{text-align: center;color: #fff;}
+#clockdiv li{display: inline-block;padding: 15px 40px;position: relative;}
+#clockdiv li:after{content: "";position: absolute;right: -20px;top: 50%;width: 35px;height: 1px;background: rgba(255,255,255,0.6);}
+#clockdiv li:last-child:after{display: none;}
+#clockdiv li:first-child label,#clockdiv li:first-child span{color: rgba(255,255,255,1);}
+#clockdiv li:first-child label{font-size: 44px;}
+#clockdiv li:first-child span{font-size: 18px;}
+#clockdiv li label{font-size: 40px;color: rgba(255,255,255,0.6);}
+#clockdiv li span{font: 400 14px 'Open Sans',sans-serif;text-transform: capitalize;color: rgba(255,255,255,0.6);}
+.soonbox h1 {position: relative;text-align: center;margin: 40px 0;}
+.soonbox h1 b{color: rgba(255,255,255,0.7);font-family: 'Pacifico', cursive;font-size: 50px;font-weight: 400;}
+.soonbox p{font: 500 18px/30px 'Open Sans',sans-serif;padding: 20px;color: rgba(255,255,255,0.8);}
+.soonbox .cd-words-wrapper {display: inline-block;position: relative;text-align: left;}
+.soonbox .cd-words-wrapper b {display: inline-block;position: absolute;white-space: nowrap;left: 0;top: 0;}
+.soonbox .cd-words-wrapper b.is-visible {position: relative;}
+.soonbox .no-js .cd-words-wrapper b {opacity: 0;}
+.soonbox .no-js .cd-words-wrapper b.is-visible {opacity: 1;}
+@media screen and (min-width:0) and (max-width:991px)
+{
+body{height: auto;}
+.soonbox form{display: table;width: 100%;}
+.soonbox .foot{position: inherit;bottom: inherit;}
+.soonbox h1,.soonbox h1 b{font-size: 30px;}
+#clockdiv li:after{display: none;}
+#clockdiv li{display: block;padding: 10px 0;}
+.soonbox .foot .text-left,.soonbox .foot .text-right p{text-align: center;}
+}

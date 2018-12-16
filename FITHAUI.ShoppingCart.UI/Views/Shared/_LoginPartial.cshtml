@@ -1,25 +1,29 @@
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm">
+        <ul class="hlogin">
             <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a class="active" asp-controller="Home" asp-action="Index" title="Trang chủ"><i class="fa fa-angle-double-left"></i>Trang chủ</a>
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="text-success"><i class="fa fa-lock"></i> Xin chào @UserManager.GetUserName(User)!</a>
+            </li>
+            <li class="pl-0">
+                <button type="submit" class="text-success btn-link navbar-link"><i class="fa fa-user"></i> Đăng xuất</button>
             </li>
         </ul>
     </form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    <ul class="hlogin">
+        <li><a class="active" asp-controller="Home" asp-action="Index" title="Trang chủ"><i class="fa fa-angle-double-left"></i>Trang chủ</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Login" title="Login"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Register" title="Register"><i class="fa fa-user"></i>Đăng ký</a></li>
     </ul>
 }

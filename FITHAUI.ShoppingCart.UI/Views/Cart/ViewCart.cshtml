@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewData["Title"] = "ViewCart";
+}
+<!--======== Fix Button  =================-->
+<ul class="fixbutton">
+    <li><a href="#categorie" data-toggle="modal"><span>Categories</span><i class="fa fa-align-justify"></i></a></li>
+    <li><a href="cart.html" target="_blank"><span>Cart</span><i class="fa fa-shopping-cart"></i></a></li>
+    <li><a href="#views" data-toggle="modal"><span>Recent View</span><i class="fa fa-eye"></i></a></li>
+    <li><a class="scrollup"><span>Go to Top</span><i class="fa fa-angle-double-up"></i></a></li>
+</ul>
+<!--======== /Fix Button  =================-->
+<!--======= Cart ==============-->
+<div class="cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!--===== Details ==========-->
+                <div class="legend">
+                    <h6>Giỏ hàng</h6>
+                    <div class="table-responsive">
+                        <table>
+                            <tr>
+                                <th class="text-center">Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Size</th>
+                                <th>Số lượng</th>
+                                <th class="text-right">Đơn giá</th>
+                                <th class="text-right">Tổng tiền</th>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
+                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
+                                <td>e19</td>
+                                <td>
+                                    <ul>
+                                        <li><input type="text" class="inputtext" placeholder="1"></li>
+                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
+                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
+                                    </ul>
+                                </td>
+                                <td class="text-right">$ 56</td>
+                                <td class="text-right">$ 56</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
+                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
+                                <td>e19</td>
+                                <td>
+                                    <ul>
+                                        <li><input type="text" class="inputtext" placeholder="1"></li>
+                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
+                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
+                                    </ul>
+                                </td>
+                                <td class="text-right">$ 56</td>
+                                <td class="text-right">$ 56</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="totaldata">
+                    <div class="col-sm-12 col-lg-4 col-lg-offset-8 Rpadded">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="text-right"><strong>Sub-Total:</strong></td>
+                                <td class="text-right"><span class="WebRupee"></span>$ 1,100.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Eco Tax (-2.00):</strong></td>
+                                <td class="text-right"><span class="WebRupee"></span>$ 2.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>VAT (20%):</strong></td>
+                                <td class="text-right"><span class="WebRupee"></span>$ 220.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right"><strong>Total:</strong></td>
+                                <td class="text-right"><span class="WebRupee"></span>$ 1,322.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="endbutton">
+                    <a asp-controller="Home" asp-action="Index" class="button" title="Continue Shopping">Tiếp tục mua hàng</a>
+                    <a asp-controller="Cart" asp-action="CheckOut" class="button" title="Checkout">Xác nhận giỏ hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--======= /Cart =============-->
+<!--======== Modal ==========-->
+<div class="modal fade" id="categorie">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-align-justify"></i>All Categories</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><a href="#">Accessories<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Fashion<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Furnitures<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Shoes<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Smartphone<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Towels Cloud<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Watches<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Electronics<i class="fa fa-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="views">
+    <div class="modal-dialog">
+        <div class="modal-content row">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="col-sm-12 col-lg-5">
+                <a href="#"><img src="images/big1.jpg" alt="viewimg"></a>
+            </div>
+            <div class="col-sm-12 col-lg-7 detail">
+                <h4>Tunique</h4>
+                <span class="price">$ 56</span>
+                <ul class="brand">
+                    <li>Brand: <a href="#">Apple</a></li>
+                    <li>Product Code: d6</li>
+                    <li>Sold By: <a href="#">Labore Magna</a></li>
+                    <li>Availability: <i class="fa fa-check-square-o"></i> In Stock</li>
+                </ul>
+                <h6>OverView</h6>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h6>Available Options</h6>
+                <ul class="colors">
+                    <li title="Yellow"><input type="radio" name="color" checked="checked" id="size01"><label for="size01"></label></li>
+                    <li class="blue" title="Blue "><input type="radio" name="color" id="size02"><label for="size02"></label></li>
+                    <li class="lime" title="Lime"><input type="radio" name="color" id="size03"><label for="size03"></label></li>
+                    <li class="silver" title="Silver"><input type="radio" name="color" id="size04"><label for="size04"></label></li>
+                    <li class="pink" title="Pink"><input type="radio" name="color" id="size05"><label for="size05"></label></li>
+                </ul>
+                <ul class="incrtevalue">
+                    <li>
+                        <form>
+                            <input type='button' value='-' class='qtyminus button' />
+                            <input type='text' name='quantity' value='1' class='qty' />
+                            <input type='button' value='+' class='qtyplus button' />
+                        </form>
+                    </li>
+                    <li><a href="#" title="Add to Cart" class="button"><i class="fa fa-shopping-cart"></i>ADD TO CART</a></li>
+                    <li><a href="detail-one.html" title="" class="button"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

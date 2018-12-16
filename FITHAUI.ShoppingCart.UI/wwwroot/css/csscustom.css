@@ -1,0 +1,8 @@
+﻿.z-index-alert {
+    position: absolute;
+    right: 9px;
+    z-index: 5000;
+    top: 64px;
+    color: #ffffff !important;
+    opacity: inherit;
+}

@@ -1,94 +1,729 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "DANNY SHOP";
 }
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.ProductCategoryViewModel>
+<!--======== Slider ============-->
+<section>
+    <div class="container">
+        <div class="row slider">
+            <div id="slidercarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#slidercarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#slidercarousel" data-slide-to="1"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="images/s1.jpg" alt="Women Fashion">
+                        <div class="carousel-caption">
+                            <h2>Awesome Fashion 2017</h2>
+                            <h3>New Arrivals Collection</h3>
+                            <a href="#" title="Buy Now" class="button">Buy Now <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="images/s2.jpg" alt="Women Fashion">
+                        <div class="carousel-caption">
+                            <h2>enjoy online shopping</h2>
+                            <h3>save up to 40% off</h3>
+                            <a href="#" title="Buy Now" class="button">Buy Now <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#slidercarousel" role="button" data-slide="prev">
+                    <span class="fa fa-angle-left fa-3x" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#slidercarousel" role="button" data-slide="next">
+                    <span class="fa fa-angle-right fa-3x" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+</section>
+<!--======== /Slider ============-->
+<!--======== Homebanner ============-->
+<section>
+    <div class="container">
+        <div class="row homebanner">
+            <!--==== Home Left Box ======-->
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <a href="#" class="box">
+                    <img src="images/sunglasses.jpg" alt="Sunglasses" class="img-responsive">
+                    <div class="overlay">
+                        <h4>Sunglasses</h4>
+                        <p>New your eyes stylishly!</p>
+                        <span class="button">Shop Now</span>
+                    </div>
+                </a>
+                <a href="#" class="box">
+                    <img src="images/handbag.jpg" alt="Handbags" class="img-responsive">
+                    <div class="overlay">
+                        <h4>Handbags</h4>
+                        <p>top branded hardware</p>
+                        <span class="button">Shop Now</span>
+                    </div>
+                </a>
+            </div>
+            <!--==== /Home Left Box ======-->
+            <!--==== Home Middle Box ======-->
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <a href="#" class="box">
+                    <img src="images/s3.jpg" alt="s3" class="img-responsive">
+                    <div class="overlay">
+                        <h4>Hats & Caps</h4>
+                        <p>Wide veriety of sizes,colors</p>
+                        <span class="button">Shop Now</span>
+                    </div>
+                </a>
+            </div>
+            <!--==== /Home Middle Box ======-->
+            <!--==== Home Right Box ======-->
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <a href="#" class="box">
+                    <img src="images/footwear.jpg" alt="footwear" class="img-responsive">
+                    <div class="overlay">
+                        <h4>footwear</h4>
+                        <p>Over 400 luxury designers</p>
+                        <span class="button">Shop Now</span>
+                    </div>
+                </a>
+                <a href="#" class="box">
+                    <img src="images/scarf.jpg" alt="scarf" class="img-responsive">
+                    <div class="overlay">
+                        <h4>Buy Scarfs</h4>
+                        <p>Shop collection of designer</p>
+                        <span class="button">Shop Now</span>
+                    </div>
+                </a>
+            </div>
+            <!--==== /Home Right Box ======-->
+        </div>
+    </div>
+</section>
+<!--======== /Homebanner ============-->
+<!--======== Deal Of The Day ============-->
+<section>
+    <div class="container">
+        <div class="row deals">
+            <div class="col-sm-12 padded">
+                <img src="images/de1.png" alt="deal">
+                <div class="dealbox">
+                    <h2>DEAL OF THE DAY</h2>
+                    <p>Get 50% off to our products</p>
+                    <ul id="clockdiv">
+                        <li>
+                            <label class="days"></label>
+                            <span>Day</span>
+                        </li>
+                        <li>
+                            <label class="hours"></label>
+                            <span>Hour</span>
+                        </li>
+                        <li>
+                            <label class="minutes"></label>
+                            <span>Min</span>
+                        </li>
+                        <li>
+                            <label class="seconds"></label>
+                            <span>Sec</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="button">@ViewBag.NumberVisitAmount</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Deal Of The Day ============-->
+<!--======== New Product ============-->
+<section>
+    <div class="container">
+        <div class="row product">
+            <div class="col-sm-12 text-center">
+                <h2 class="heading">New Products</h2>
+            </div>
+            <div class="col-sm-12 text-center tabdata">
+                <ul class="ldata">
+                    <li class="active"><a href="#latest" data-toggle="tab">Latest</a></li>
+                    <li><a href="#special" data-toggle="tab">Special</a></li>
+                    <li><a href="#seller" data-toggle="tab">BestSeller</a></li>
+                </ul>
+                <!--===== Tab panes =========-->
+                <div class="tab-content">
+                    <!--===== Latest =========-->
+                    <div class="tab-pane active" id="latest">
+                        <div class="owl-carousel pbox">
+                            @foreach (var item in Model)
+                            {
+                                await Html.RenderPartialAsync("_ProductPartialNew", item);
+                            }
+                        </div>
+                    </div>
+                    <!--===== /Latest =========-->
+                    <!--===== Special =========-->
+                    <div class="tab-pane" id="special">
+                        <div class="owl-carousel pbox">
+                            <div class="item">
+                                <ul class="viewcart">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                                </ul>
+                                <a href="#">
+                                    <img src="images/wearing.jpg" alt="wearing" class="normal">
+                                    <img src="images/wearinghover.jpg" alt="wearing" class="hoverimg">
+                                </a>
+                                <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>Pretty Dress</p>
+                                <p class="price"><span>$350</span><span class="del">$450</span></p>
+                            </div>
+                            <div class="item">
+                                <ul class="viewcart">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                                </ul>
+                                <a href="#">
+                                    <img src="images/trouser.jpg" alt="trouser" class="normal">
+                                    <img src="images/trouserhover.jpg" alt="trouser" class="hoverimg">
+                                </a>
+                                <ul class="rating">
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>trouser</p>
+                                <p class="price"><span>$1050</span><!-- <span class="del">$650</span> --></p>
+                            </div>
+                            <div class="item last">
+                                <ul class="viewcart">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                                </ul>
+                                <a href="#">
+                                    <img src="images/sweater.jpg" alt="sweater" class="normal">
+                                    <img src="images/sweaterhover.jpg" alt="sweater" class="hoverimg">
+                                </a>
+                                <ul class="rating">
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>sweater</p>
+                                <p class="price"><span>$350</span><!-- <span class="del">$650</span> --></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--===== /Special =========-->
+                    <!--===== Best Seller =========-->
+                    <div class="tab-pane" id="seller">
+                        <div class="owl-carousel pbox">
+                            <div class="item">
+                                <ul class="viewcart">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                                </ul>
+                                <a href="#">
+                                    <img src="images/wearing.jpg" alt="wearing" class="normal">
+                                    <img src="images/wearinghover.jpg" alt="wearing" class="hoverimg">
+                                </a>
+                                <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>Pretty Dress</p>
+                                <p class="price"><span>$350</span><span class="del">$450</span></p>
+                            </div>
+                            <div class="item last">
+                                <ul class="viewcart">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                                </ul>
+                                <a href="#">
+                                    <img src="images/sweater.jpg" alt="sweater" class="normal">
+                                    <img src="images/sweaterhover.jpg" alt="sweater" class="hoverimg">
+                                </a>
+                                <ul class="rating">
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <p>sweater</p>
+                                <p class="price"><span>$350</span><!-- <span class="del">$650</span> --></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--===== /Best Seller =========-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /New Product ============-->
+<!--======== Support ============-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="support">
+                <div class="col-sm-12 col-lg-4 text-center">
+                    <a class="box" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                        <h6>24x7 Free Support</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus enim, sagittis et orci eu, pharetra commodo turpis. Proin tincidunt facilisis pharetra. Cras tempus aliquam sollicitudin. Vestibulum elementum luctus tempus.</p>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-lg-4 text-center">
+                    <a class="box" href="#">
+                        <i class="fa fa-usd fa-3x"></i>
+                        <h6>Money Back Gurantee</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus enim, sagittis et orci eu, pharetra commodo turpis. Proin tincidunt facilisis pharetra. Cras tempus aliquam sollicitudin. Vestibulum elementum luctus tempus.</p>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-lg-4 text-center">
+                    <a class="box" href="#">
+                        <i class="fa fa-truck fa-3x"></i>
+                        <h6>Free Worldwide shipping</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus enim, sagittis et orci eu, pharetra commodo turpis. Proin tincidunt facilisis pharetra. Cras tempus aliquam sollicitudin. Vestibulum elementum luctus tempus.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Support ============-->
+<!--======== Featured Product ============-->
+<section>
+    <div class="container">
+        <div class="row product">
+            <div class="col-sm-12 text-center">
+                <h2 class="heading">Featured Products</h2>
+            </div>
+            <div class="col-sm-12 text-center">
+                <div class="owl-carousel pbox">
+                    <div class="item">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/shirt.jpg" alt="shirt" class="normal">
+                            <img src="images/shirthover.jpg" alt="shirt" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>Black Pants & Shirt</p>
+                        <p class="price"><span>$150</span><span class="del">$450</span></p>
+                    </div>
+                    <div class="item">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/skirt.jpg" alt="skirt" class="normal">
+                            <img src="images/skirthover.jpg" alt="skirt" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>Beautiful stylish skirt</p>
+                        <p class="price"><span>$250</span><!-- <span class="del">$650</span> --></p>
+                    </div>
+                    <div class="item">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/wearing.jpg" alt="wearing" class="normal">
+                            <img src="images/wearinghover.jpg" alt="wearing" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>Pretty Dress</p>
+                        <p class="price"><span>$350</span><span class="del">$450</span></p>
+                    </div>
+                    <div class="item">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/trouser.jpg" alt="trouser" class="normal">
+                            <img src="images/trouserhover.jpg" alt="trouser" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>trouser</p>
+                        <p class="price"><span>$1050</span><!-- <span class="del">$650</span> --></p>
+                    </div>
+                    <div class="item">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/trouser.jpg" alt="trouser" class="normal">
+                            <img src="images/trouserhover.jpg" alt="trouser" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>trouser</p>
+                        <p class="price"><span>$1050</span><!-- <span class="del">$650</span> --></p>
+                    </div>
+                    <div class="item last">
+                        <ul class="viewcart">
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+                        </ul>
+                        <a href="#">
+                            <img src="images/sweater.jpg" alt="sweater" class="normal">
+                            <img src="images/sweaterhover.jpg" alt="sweater" class="hoverimg">
+                        </a>
+                        <ul class="rating">
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li class="active"><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <p>sweater</p>
+                        <p class="price"><span>$350</span><!-- <span class="del">$650</span> --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Featured Product ============-->
+<!--======== Testimonials ============-->
+<div>
+    <div class="container">
+        <div class="row testimonial">
+            <div class="col-sm-12 col-lg-8 col-lg-offset-2">
+                <div class="owl-carousel testicarousel">
+                    <div class="item">
+                        <div class="tbox">
+                            <img src="images/comment1.jpg" alt="Comment">
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="name">Jhon Doe</p>
+                    </div>
+                    <div class="item">
+                        <div class="tbox">
+                            <img src="images/comment1.jpg" alt="Comment">
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="name">Jhon Doe</p>
+                    </div>
+                    <div class="item">
+                        <div class="tbox">
+                            <img src="images/comment1.jpg" alt="Comment">
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="name">Jhon Doe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--======== /Support ============-->
+<!--======== Blog ============-->
+<section>
+    <div class="container">
+        <div class="row blog">
+            <div class="col-sm-12 text-center">
+                <h2 class="heading">Latest Blog</h2>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                <div class="box">
+                    <div class="bloginner">
+                        <img src="images/b1.jpg" alt="News">
+                        <div class="overlay">
+                            <ul>
+                                <li><a href="#" title="Comment"><i class="fa fa-comment"></i> 0 Comment</a></li>
+                                <li><a href="#" title="Date"><i class="fa fa-calendar"></i> 13-10-2017</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" title="" class="head">Voluptatem Accusantium Doloremque</a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt egestas maximus. Ut gravida urna erat, a sodales elit facilisis et...</p>
+                    <a href="#" title="Read More" class="read">Read More</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                <div class="box">
+                    <div class="bloginner">
+                        <img src="images/b2.jpg" alt="News">
+                        <div class="overlay">
+                            <ul>
+                                <li><a href="#" title="Comment"><i class="fa fa-comment"></i> 0 Comment</a></li>
+                                <li><a href="#" title="Date"><i class="fa fa-calendar"></i> 13-10-2017</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" title="" class="head">Voluptatem Accusantium Doloremque</a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt egestas maximus. Ut gravida urna erat, a sodales elit facilisis et...</p>
+                    <a href="#" title="Read More" class="read">Read More</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                <div class="box">
+                    <div class="bloginner">
+                        <img src="images/b3.jpg" alt="News">
+                        <div class="overlay">
+                            <ul>
+                                <li><a href="#" title="Comment"><i class="fa fa-comment"></i> 0 Comment</a></li>
+                                <li><a href="#" title="Date"><i class="fa fa-calendar"></i> 13-10-2017</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" title="" class="head">Voluptatem Accusantium Doloremque</a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt egestas maximus. Ut gravida urna erat, a sodales elit facilisis et...</p>
+                    <a href="#" title="Read More" class="read">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Blog ============-->
+<!--======== Our Client ============-->
+<section>
+    <div class="container">
+        <div class="row client">
+            <div class="col-sm-12 text-center">
+                <h2 class="heading">Our Client</h2>
+            </div>
+            <div class="col-sm-12 owl-carousel cbox">
+                <a href="#" title="" class="item"><img src="images/c1.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c2.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c3.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c4.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c5.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c6.png" alt=""></a>
+                <a href="#" title="" class="item"><img src="images/c7.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Our Client ============-->
+<!--========= Footer ============-->
+<!--========= Newsletter ========-->
+<section>
+    <div class="container">
+        <div class="row newsletter">
+            <div class="col-sm-12 col-lg-6">
+                <h5><i class="fa fa-paper-plane-o fa-3x"></i>Signup for Newsletter<span>We’ll never share your email address with a third-party.</span></h5>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <input type="text" name="email" placeholder="Enter your Email Address">
+                <input type="submit" name="subscribe" value="subscribe" class="button">
+            </div>
+        </div>
+    </div>
+</section>
+<!--========= /Newsletter =======-->
+<footer>
+    <div class="container">
+        <div class="row footer">
+            <!-- Information -->
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <h3 class="footheading">Information</h3>
+                <ul class="list-with-icon">
+                    <li><a href="about.html" title="About Us"><i class="fa fa-angle-right"></i>About Us</a></li>
+                    <li><a href="faq.html" title="FAQ"><i class="fa fa-angle-right"></i>FAQ</a></li>
+                    <li><a href="warranty.html" title="Warranty"><i class="fa fa-angle-right"></i>Warranty And Services</a></li>
+                    <li><a href="support.html" title="Support"><i class="fa fa-angle-right"></i>Support 24/7 page</a></li>
+                    <li><a href="#" title="Product Registration"><i class="fa fa-angle-right"></i>Product Registration</a></li>
+                    <li><a href="service.html" title="Service"><i class="fa fa-angle-right"></i>Service</a></li>
+                </ul>
+            </div>
+            <!-- /Information -->
+            <!-- My Account -->
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <h3 class="footheading">My Account</h3>
+                <ul class="list-with-icon">
+                    <li><a href="#" title="My Account"><i class="fa fa-angle-right"></i>My Account</a></li>
+                    <li><a href="#" title="Order History"><i class="fa fa-angle-right"></i>Order History</a></li>
+                    <li><a href="#" title="Wish List"><i class="fa fa-angle-right"></i>Wish List</a></li>
+                    <li><a href="#" title="Returns"><i class="fa fa-angle-right"></i>Returns</a></li>
+                    <li><a href="#" title="Downloads"><i class="fa fa-angle-right"></i>Downloads</a></li>
+                    <li><a href="#" title="Customer Service"><i class="fa fa-angle-right"></i>Customer Service</a></li>
+                </ul>
+            </div>
+            <!-- /My Account -->
+            <!-- Services -->
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <h3 class="footheading">Services</h3>
+                <ul class="list-with-icon">
+                    <li><a href="contact.html" title="Contact Us"><i class="fa fa-angle-right"></i>Contact Us</a></li>
+                    <li><a href="#" title="Gift Certificates"><i class="fa fa-angle-right"></i>Gift Certificates</a></li>
+                    <li><a href="sitemap.html" title="Site Map"><i class="fa fa-angle-right"></i>Site Map</a></li>
+                    <li><a href="blog.html" title="Blog"><i class="fa fa-angle-right"></i>Blog</a></li>
+                    <li><a href="team.html" title="Our Team"><i class="fa fa-angle-right"></i>Our Team</a></li>
+                </ul>
+            </div>
+            <!-- /Services -->
+            <!-- Address -->
+            <div class="col-xs-12 col-sm-6 col-lg-3">
+                <!-- <a href="index.html" class="footerlogo"><img alt="image" src="images/footerlogo.png"></a> -->
+                <h3 class="footheading">Address</h3>
+                <ul class="list-with-icon">
+                    <li><i class="fa fa-map-marker"></i>San Luis potosí, centro historico, 78000 san luis potosí, SPL, Mexico</li>
+                    <li><i class="fa fa-phone"></i>(+0214)0 315 215 - (+0214)0 315 215</li>
+                    <li><i class="fa fa-envelope"></i><a href="#" title="Send Mail">support@pcubelive.com</a></li>
+                    <li><i class="fa fa-clock-o"></i>Open: 24 Hours</li>
+                </ul>
+            </div>
+            <!-- /Address -->
+            <!-- Other Link -->
+            <div class="col-sm-12 text-center">
+                <ul class="other">
+                    <li><a href="#" title="Online Shopping">Online Shopping</a></li>
+                    <li><a href="#" title="Promotions">Promotions</a></li>
+                    <li><a href="faq.html" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="sitemap.html" title="Site Map">Site Map</a></li>
+                    <li><a href="#" title="Orders">Orders and Returns</a></li>
+                    <li><a href="service.html" title="Help">Help</a></li>
+                    <li><a href="contact.html" title="Contact">Contact Us</a></li>
+                    <li><a href="support.html" title="Support">Support</a></li>
+                    <li><a href="#" title="Most Populars">Most Populars</a></li>
+                    <li><a href="#" title="New Arrivals">New Arrivals</a></li>
+                    <li><a href="#" title="Special Products">Special Products</a></li>
+                    <li><a href="#" title="Manufacturers">Manufacturers</a></li>
+                    <li><a href="#" title="Shipping">Shipping</a></li>
+                    <li><a href="#" title="Payments">Payments</a></li>
+                    <li><a href="#" title="Returns">Returns</a></li>
+                    <li><a href="#" title="Refunds">Refunds</a></li>
+                    <li><a href="warranty.html" title="Warranty">Warranty</a></li>
+                    <li><a href="#" title="Promotions">Promotions</a></li>
+                    <li><a href="warranty.html" title="Customer Service">Customer Service</a></li>
+                </ul>
+            </div>
+            <!-- /Other Link -->
+        </div>
+    </div>
+</footer>
+<!--======== /Footer =============-->
+
+<div class="modal fade" id="categorie">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-align-justify"></i>All Categories</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><a href="#">Accessories<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Fashion<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Furnitures<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Shoes<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Smartphone<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Towels Cloud<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Watches<i class="fa fa-plus"></i></a></li>
+                    <li><a href="#">Electronics<i class="fa fa-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+<div class="modal fade" id="views">
+    <div class="modal-dialog">
+        <div class="modal-content row">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="col-sm-12 col-lg-5">
+                <a href="#"><img src="images/big1.jpg" alt="viewimg"></a>
+            </div>
+            <div class="col-sm-12 col-lg-7 detail">
+                <h4>Tunique</h4>
+                <span class="price">$ 56</span>
+                <ul class="brand">
+                    <li>Brand: <a href="#">Apple</a></li>
+                    <li>Product Code: d6</li>
+                    <li>Sold By: <a href="#">Labore Magna</a></li>
+                    <li>Availability: <i class="fa fa-check-square-o"></i> In Stock</li>
+                </ul>
+                <h6>OverView</h6>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h6>Available Options</h6>
+                <ul class="colors">
+                    <li title="Yellow"><input type="radio" name="color" checked="checked" id="size01"><label for="size01"></label></li>
+                    <li class="blue" title="Blue "><input type="radio" name="color" id="size02"><label for="size02"></label></li>
+                    <li class="lime" title="Lime"><input type="radio" name="color" id="size03"><label for="size03"></label></li>
+                    <li class="silver" title="Silver"><input type="radio" name="color" id="size04"><label for="size04"></label></li>
+                    <li class="pink" title="Pink"><input type="radio" name="color" id="size05"><label for="size05"></label></li>
+                </ul>
+                <ul class="incrtevalue">
+                    <li>
+                        <form>
+                            <input type='button' value='-' class='qtyminus button' />
+                            <input type='text' name='quantity' value='1' class='qty' />
+                            <input type='button' value='+' class='qtyplus button' />
+                        </form>
+                    </li>
+                    <li><a href="#" title="Add to Cart" class="button"><i class="fa fa-shopping-cart"></i>ADD TO CART</a></li>
+                    <li><a href="detail-one.html" title="" class="button"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
