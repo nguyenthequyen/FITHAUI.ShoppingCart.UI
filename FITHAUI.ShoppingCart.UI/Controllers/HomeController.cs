@@ -37,11 +37,11 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             return View(productRepository.GetProducts());
         }
 
-        public IActionResult MenuPartial()
-        {
-            var category = categoryRepository.GetCategories();
-            return PartialView("~/Views/Home/MenuPartial.cshtml", category);
-        }
+        //public IActionResult MenuPartial()
+        //{
+        //    var category = categoryRepository.GetCategories();
+        //    return PartialView("~/Views/Home/MenuPartial.cshtml", category);
+        //}
 
         public IActionResult About()
         {

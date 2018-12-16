@@ -91,25 +91,25 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             }
                             if (productRepository.InsertProduct(product, ProductImage))
                             {
-                                //Success(string.Format("<b>{0}</b> Thêm sản phẩm thành công!", product.ProductCode), true);
+                                Success(string.Format("<b>{0}</b> Thêm sản phẩm thành công!", product.ProductCode), true);
                                 return Redirect("GetAllProductList");
                             }
                             else
                             {
-                                //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
+                                Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
                                 return View("InsertProduct");
                             }
                         }
                         else
                         {
-                            //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
+                            Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
                             return View("InsertProduct");
                         }
                     }
                 }
                 else
                 {
-                    //Warning(string.Format("Bạn chưa đăng nhập!"), true);
+                    Warning(string.Format("Bạn chưa đăng nhập!"), true);
                     return Redirect("/Identity/Account/Login");
                 }
             }
@@ -129,7 +129,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         {
             var model = productRepository.GetProductByProcductCode(productId);
             ViewBag.ListCategory = categoryRepository.GetCategories();
-            return View("EditProduct", ViewBag.ListCategory);
+            return View("EditProduct", model);
         }
         /// <summary>
         /// Sửa sản phẩm
@@ -163,25 +163,25 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             }
                             if (productRepository.UpdateProduct(product, ProductImage))
                             {
-                                //Success(string.Format("<b>{0}</b> Thêm sản phẩm thành công!", product.ProductCode), true);
+                                Success(string.Format("<b>{0}</b> Thêm sản phẩm thành công!", product.ProductCode), true);
                                 return Redirect("GetAllProductList");
                             }
                             else
                             {
-                                //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), true);
+                                Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), true);
                                 return Redirect("InsertProduct");
                             }
                         }
                         else
                         {
-                            //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
+                            Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
                             return View("InsertProduct");
                         }
                     }
                 }
                 else
                 {
-                    //Warning(string.Format("Bạn chưa đăng nhập!"), false);
+                    Warning(string.Format("Bạn chưa đăng nhập!"), false);
                     return Redirect("/Identity/Account/Login");
                 }
             }
@@ -202,12 +202,12 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var check = productRepository.DeleteProduct(productId);
             if (check)
             {
-                //Success(string.Format("Xóa sản phẩm {0} thất bại!", productId), true);
+                Success(string.Format("Xóa sản phẩm {0} thất bại!", productId), true);
                 return Redirect("GetAllProductList");
             }
             else
             {
-                //Danger(string.Format("Xóa sản phẩm {0} thất bại!", productId), false);
+                Danger(string.Format("Xóa sản phẩm {0} thất bại!", productId), false);
                 return Redirect("GetAllProductList");
             }
         }
