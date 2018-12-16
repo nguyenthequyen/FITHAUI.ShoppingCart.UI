@@ -48,11 +48,13 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             }
         }
         [Route("danh-sach-san-pham")]
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
         [Route("them-san-pham")]
+        [Authorize]
         public IActionResult InsertProduct()
         {
             ViewBag.ListCategory = categoryRepository.GetCategories();
@@ -65,6 +67,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <param name="ProductImage"></param>
         /// <param name="returnUrl"></param>
         /// <returns></returns>
+        [Authorize]
         public async Task<IActionResult> CreatedProduct(Product product, IFormFile ProductImage, string returnUrl = null)
         {
             try
@@ -73,7 +76,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
+                        Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
                         return View("InsertProduct");
                     }
                     else
@@ -125,6 +128,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
+        [Authorize]
         public IActionResult GetProductByProcductCode(string productId)
         {
             var model = productRepository.GetProductByProcductCode(productId);
@@ -137,6 +141,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <param name="product"></param>
         /// <param name="ProductImage"></param>
         /// <returns></returns>
+        [Authorize]
         public async Task<IActionResult> UpdateProduct(Product product, IFormFile ProductImage)
         {
             try
@@ -145,7 +150,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        //Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
+                        Danger(string.Format("<b>{0}</b> Thêm sản phẩm thất bại!", product.ProductCode), false);
                         return View("InsertProduct");
                     }
                     else
@@ -197,6 +202,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
+        [Authorize]
         public IActionResult DeleteProduct(int productId)
         {
             var check = productRepository.DeleteProduct(productId);
@@ -214,7 +220,8 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         public IActionResult GetProductByCategoryId(string categoryId)
         {
             var model = productRepository.GetProductByCategoryId(categoryId);
-            return PartialView("~/Views/Home/_ProductByCategory.cshtml", model);
+            ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryId);
+            return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model);
         }
     }
 }

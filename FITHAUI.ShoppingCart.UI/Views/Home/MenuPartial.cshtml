@@ -1,5 +1,4 @@
-﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.ProductCategoryViewModel>
-@{
+﻿@*@{
     var groupedList = from ca in Model
                       group ca by ca.CategoryId into depGroup
                       orderby depGroup.Key ascending
@@ -14,5 +13,5 @@
             </ul>
         }
     }
-}
+}*@
 

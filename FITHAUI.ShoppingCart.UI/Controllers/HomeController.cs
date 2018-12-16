@@ -18,7 +18,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         HomeRepository homeRepository = new HomeRepository();
         CategoryRepository categoryRepository = new CategoryRepository();
         //Action Controller
-        public IActionResult Index()
+        public ActionResult Index()
         {
             var count = homeRepository.GetNumberVisitor();
             ViewBag.NumberVisitAmount = 0;
@@ -34,14 +34,17 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 ViewBag.NumberVisitAmount = homeRepository.GetNumberVisitor();
             }
             ModelState.Clear();
-            return View(productRepository.GetProducts());
+            ViewBag.ProductNew = productRepository.GetProducts();
+            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.Category = categoryRepository.GetMenuCategories();
+            return View();
         }
 
-        //public IActionResult MenuPartial()
-        //{
-        //    var category = categoryRepository.GetCategories();
-        //    return PartialView("~/Views/Home/MenuPartial.cshtml", category);
-        //}
+        public ActionResult MenuPartial()
+        {
+            var category = categoryRepository.GetMenuCategories();
+            return PartialView(category);
+        }
 
         public IActionResult About()
         {

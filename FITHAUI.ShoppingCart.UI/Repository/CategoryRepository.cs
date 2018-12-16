@@ -49,6 +49,35 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
+        public IEnumerable<Category> GetMenuCategories()
+        {
+            List<Category> categories = new List<Category>();
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_GetCategory", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        categories.Add(new Category
+                        {
+                            CategoryName = sqlDataReader["CategoryName"].ToString(),
+                            CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString())
+                        });
+                    }
+                    sqlConnection.Close();
+                }
+                return categories;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return categories;
+        }
     }
 }
 

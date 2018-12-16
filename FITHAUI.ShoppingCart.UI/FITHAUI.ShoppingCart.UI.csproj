@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
-    <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Contact.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
@@ -51,10 +50,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
     <PackageReference Include="X.PagedList" Version="7.6.0" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Category\" />
   </ItemGroup>
 
 </Project>

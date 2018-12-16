@@ -20,11 +20,11 @@ namespace FITHAUI.ShoppingCart.UI.Repository
         /// Lấy danh sách sản phẩm mới nhất
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ProductCategoryViewModel> GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
             try
             {
-                List<ProductCategoryViewModel> products = new List<ProductCategoryViewModel>();
+                List<Product> products = new List<Product>();
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
                     SqlCommand sqlCommand = new SqlCommand("Proc_GetProductNew", sqlConnection);
@@ -33,14 +33,44 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
                     {
-                        ProductCategoryViewModel product = new ProductCategoryViewModel();
+                        Product product = new Product();
+                        product.ProductName = sqlDataReader["ProductName"].ToString();
+                        product.ProductImage = sqlDataReader["ProductImage"].ToString();
+                        product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
+                        product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
+                        product.ProductColor = sqlDataReader["ProductColor"].ToString();
+                        products.Add(product);
+                    }
+                    sqlConnection.Close();
+                }
+                return products;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public IEnumerable<Product> GetProductsHost()
+        {
+            try
+            {
+                List<Product> products = new List<Product>();
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_GetProductNew", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        Product product = new Product();
                         product.ProductName = sqlDataReader["ProductName"].ToString();
                         product.ProductImage = sqlDataReader["ProductImage"].ToString();
                         product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
-                        product.CategoryName = sqlDataReader["CategoryName"].ToString();
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         products.Add(product);
                     }
@@ -93,9 +123,9 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             }
             return check;
         }
-        public IEnumerable<ProductCategoryViewModel> GetAllProducts(string startDate, string endDate)
+        public IEnumerable<Product> GetAllProducts(string startDate, string endDate)
         {
-            List<ProductCategoryViewModel> products = new List<ProductCategoryViewModel>();
+            List<Product> products = new List<Product>();
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -108,7 +138,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
                     {
-                        ProductCategoryViewModel product = new ProductCategoryViewModel();
+                        Product product = new Product();
                         product.ProductName = sqlDataReader["ProductName"].ToString();
                         product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
                         product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
@@ -133,9 +163,9 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             return products;
         }
 
-        public ProductCategoryViewModel GetProductByProcductCode(string productId)
+        public Product GetProductByProcductCode(string productId)
         {
-            ProductCategoryViewModel product = new ProductCategoryViewModel();
+            Product product = new Product();
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -230,9 +260,9 @@ namespace FITHAUI.ShoppingCart.UI.Repository
         /// Lấy sản phẩm theo danh mục sản phẩm
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ProductCategoryViewModel> GetProductByCategoryId(string categoryId)
+        public IEnumerable<Product> GetProductByCategoryId(string categoryId)
         {
-            List<ProductCategoryViewModel> products = new List<ProductCategoryViewModel>();
+            List<Product> products = new List<Product>();
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -244,7 +274,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                     while (sqlDataReader.Read())
                     {
-                        ProductCategoryViewModel product = new ProductCategoryViewModel();
+                        Product product = new Product();
                         product.ProductName = sqlDataReader["ProductName"].ToString();
                         product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
