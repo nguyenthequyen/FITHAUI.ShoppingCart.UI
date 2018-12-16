@@ -106,7 +106,6 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     sqlCommand.Parameters.AddWithValue("@ProductDescription", product.ProductDescription);
                     sqlCommand.Parameters.AddWithValue("@ProductAmount", product.ProductAmount);
                     sqlCommand.Parameters.AddWithValue("@ProductStatus", product.ProductStatus);
-                    sqlCommand.Parameters.AddWithValue("@ProductRatting", product.ProductRatting);
                     sqlCommand.Parameters.AddWithValue("@ProductCode", product.ProductCode);
                     sqlCommand.Parameters.AddWithValue("@ProductNew", product.ProductNew);
                     sqlCommand.Parameters.AddWithValue("@CategoryId", product.CategoryId);
@@ -212,7 +211,6 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     sqlCommand.Parameters.AddWithValue("@ProductName", product.ProductName);
                     sqlCommand.Parameters.AddWithValue("@ProductNew", product.ProductNew);
                     sqlCommand.Parameters.AddWithValue("@ProductPrice", product.ProductPrice);
-                    sqlCommand.Parameters.AddWithValue("@ProductRatting", product.ProductRatting);
                     sqlCommand.Parameters.AddWithValue("@ProductStatus", product.ProductStatus);
                     sqlCommand.Parameters.AddWithValue("@ProductDescription", product.ProductDescription);
                     sqlCommand.Parameters.AddWithValue("@ProductColor", product.ProductColor);

@@ -15,6 +15,157 @@ $(document).ready(function () {
         $('#ProductCode').val(xoa_dau(str));
     })
 })
+$('#updateproduct').validate({
+    errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page  
+    errorElement: 'div',
+    errorPlacement: function (error, e) {
+        e.parents('.form-group > div').append(error);
+    },
+    highlight: function (e) {
+
+        $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+        $(e).closest('.help-block').remove();
+    },
+    success: function (e) {
+        e.closest('.form-group').removeClass('has-success has-error');
+        e.closest('.help-block').remove();
+    }, rules: {
+        'ProductId': {
+            required: true,
+            email: true
+        },
+
+        'ProductCode': {
+            required: true,
+            minlength: 6
+        },
+        'ProductColor': {
+            required: true,
+            minlength: 6
+        },
+        'ProductDescription': {
+            required: true,
+            minlength: 6
+        },
+
+        'ProductName': {
+            required: true,
+            equalTo: '#Password'
+        }
+    },
+    messages: {
+        'ProductId': 'Please enter valid email address',
+
+        'ProductCode': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductColor': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductName': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductDescription': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        }
+    }
+})
+$('#insertproduct').validate({
+    errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page  
+    errorElement: 'div',
+    errorPlacement: function (error, e) {
+        e.parents('.form-group > div').append(error);
+    },
+    highlight: function (e) {
+
+        $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+        $(e).closest('.help-block').remove();
+    },
+    success: function (e) {
+        e.closest('.form-group').removeClass('has-success has-error');
+        e.closest('.help-block').remove();
+    },
+    rules: {
+        'ProductId': {
+            required: true,
+            email: true
+        },
+
+        'ProductCode': {
+            required: true,
+            minlength: 6
+        },
+        'ProductColor': {
+            required: true,
+            minlength: 6
+        },
+        'ProductDescription': {
+            required: true,
+            minlength: 6
+        },
+
+        'ProductName': {
+            required: true,
+            equalTo: '#Password'
+        }
+    },
+    messages: {
+        'ProductId': 'Please enter valid email address',
+
+        'ProductCode': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductColor': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductName': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductDescription': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        }
+    }
+})
+$(function () {
+    if ($('#success').val()) {
+        debugger
+        displayMessage($('#success').val(), 'success');
+    }
+    if ($('#info').val()) {
+        displayMessage($('#info').val(), 'info');
+    }
+    if ($('#warning').val()) {
+        displayMessage($('#warning').val(), 'warning');
+    }
+    if ($('#error').val()) {
+        displayMessage($('#error').val(), 'error');
+    }
+});
+var displayMessage = function (message, msgType) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "onClick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "8000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    toastr[msgType](message);
+};
 function xoa_dau(str) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");

@@ -2,7 +2,7 @@
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         public IActionResult Index()
         {

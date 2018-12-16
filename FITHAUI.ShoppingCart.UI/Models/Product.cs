@@ -37,16 +37,19 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// Màu sắc
         /// </summary>
         [DisplayName("Màu sắc")]
+        [Required(ErrorMessage = "Màu sắc không được để trống")]
         public string ProductColor { get; set; }
         /// <summary>
         /// Hình ảnh sản phẩm
         /// </summary>
         [DisplayName("Hình ảnh sản phẩm")]
+        [Required(ErrorMessage = "Hình ảnh không được để trống")]
         public string ProductImage { get; set; }
         /// <summary>
         /// Mô tả sản phẩm
         /// </summary>
         [DisplayName("Mô tả sản phẩm")]
+        [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
         public string ProductDescription { get; set; }
         /// <summary>
         /// Tình trạng sản phẩm
@@ -75,6 +78,7 @@ namespace FITHAUI.ShoppingCart.UI.Models
         public int ProductRatting { get; set; }
         [DisplayName("Sản phẩm mới")]
         public int ProductNew { get; set; }
+        [DisplayName("Loại sản phẩm")]
         public int? CategoryId { get; set; }
 
         public virtual Category Category { get; set; }

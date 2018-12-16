@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         ProductRepository productRepository = new ProductRepository();
         HomeRepository homeRepository = new HomeRepository();

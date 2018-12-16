@@ -3,9 +3,7 @@
     Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
 }
 @using X.PagedList.Mvc.Core;
-@*@using X.PagedList.Mvc;*@
-@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.ProductCategoryViewModel>
-@* Thêm sửa xóa sản phẩm *@
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>
 <div class="content">
     <div class="page-content-wrapper">
         <div class="container-fluid">
@@ -27,7 +25,6 @@
         </div>
     </div>
 </div>
-@* Danh sách sản phẩm *@
 <div class="content mt-0">
     <div class="page-content-wrapper pt-0">
         <div class="container-fluid">

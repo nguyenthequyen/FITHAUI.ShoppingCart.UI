@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : BaseController
     {
         [Authorize]
         [Route("Admin")]
