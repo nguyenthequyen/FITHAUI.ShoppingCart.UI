@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using FITHAUI.ShoppingCart.UI.Models;
 using FITHAUI.ShoppingCart.UI.Repository;
-using Microsoft.Extensions.Configuration;
-using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Http;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
