@@ -70,8 +70,10 @@
                 <!-- Logo -->
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 text-center">
                     <div class="search">
-                        <input type="search" name="search" placeholder="Tìm kiếm">
-                        <button type="button"><i class="fa fa-search"></i></button>
+                        <form  method="post" asp-action="SearchProductByProductName" asp-controller="Home">
+                            <input type="search" name="productName" id="productName" placeholder="Tìm kiếm">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
                 </div>
                 <!-- /Logo -->
@@ -148,7 +150,7 @@
                                 </div>
                                 <!-- /SUBMENU -->
                             </li>
-                            <li><a asp-controller="Dashboard" title="Layout">Trang Admin</a></li>
+                            <li><a asp-controller="Dashboard" asp-action="Index" title="Layout">Trang Admin</a></li>
                             <li><a asp-controller="Product" asp-action="GetAllProductList" title="">Product List</a></li>
                             @*<li><a href="contact.html" title="Contact">Liên hệ</a></li>*@
                         </ul>
@@ -160,19 +162,19 @@
     </header>
     @RenderBody()
     <div>
-    <div class="container">
-        <div class="row copyright">
-            <div class="col-sm-12 col-lg-9 text-left">
-                <p class="white-text">© 2018 DANNY SHOP. Đã đăng ký bản quyền. Thiết kế bởi <a href="#" target="_blank" title="Pcube IT">Nhóm 1</a></p>
+        <div class="container">
+            <div class="row copyright">
+                <div class="col-sm-12 col-lg-9 text-left">
+                    <p class="white-text">© 2018 DANNY SHOP. Đã đăng ký bản quyền. Thiết kế bởi <a href="#" target="_blank" title="Pcube IT">Nhóm 1</a></p>
+                </div>
+                <!-- Payment -->
+                <div class="col-sm-12 col-lg-3 text-right">
+                    <img src="~/images/payment.png" alt="payment">
+                </div>
+                <!-- /Payment -->
             </div>
-            <!-- Payment -->
-            <div class="col-sm-12 col-lg-3 text-right">
-                <img src="~/images/payment.png" alt="payment">
-            </div>
-            <!-- /Payment -->
         </div>
     </div>
-</div>
     <environment include="Development">
         <script src="~/js/jquery-3.2.1.min.js"></script>
         <!--=========Bootstrap Js=============-->

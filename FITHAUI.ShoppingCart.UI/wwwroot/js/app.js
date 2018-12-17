@@ -16,20 +16,20 @@ $(document).ready(function () {
     })
 })
 $('#updateproduct').validate({
-    errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page  
+    errorClass: 'help-block animation-slideDown',  
     errorElement: 'div',
     errorPlacement: function (error, e) {
         e.parents('.form-group > div').append(error);
     },
     highlight: function (e) {
-
         $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
         $(e).closest('.help-block').remove();
     },
     success: function (e) {
         e.closest('.form-group').removeClass('has-success has-error');
         e.closest('.help-block').remove();
-    }, rules: {
+    },
+    rules: {
         'ProductId': {
             required: true,
             email: true
@@ -43,11 +43,14 @@ $('#updateproduct').validate({
             required: true,
             minlength: 6
         },
-        'ProductDescription': {
+        'ProductDescriptionLong': {
             required: true,
             minlength: 6
         },
-
+        'ProductDescriptionShort': {
+            required: true,
+            minlength: 6
+        },
         'ProductName': {
             required: true,
             equalTo: '#Password'
@@ -68,7 +71,11 @@ $('#updateproduct').validate({
             required: 'Please provide a password',
             minlength: 'Your password must be at least 6 characters long'
         },
-        'ProductDescription': {
+        'ProductDescriptionShort': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductDescriptionLong': {
             required: 'Please provide a password',
             minlength: 'Your password must be at least 6 characters long'
         }
@@ -103,11 +110,14 @@ $('#insertproduct').validate({
             required: true,
             minlength: 6
         },
-        'ProductDescription': {
+        'ProductDescriptionLong': {
             required: true,
             minlength: 6
         },
-
+        'ProductDescriptionShort': {
+            required: true,
+            minlength: 6
+        },
         'ProductName': {
             required: true,
             equalTo: '#Password'
@@ -128,7 +138,11 @@ $('#insertproduct').validate({
             required: 'Please provide a password',
             minlength: 'Your password must be at least 6 characters long'
         },
-        'ProductDescription': {
+        'ProductDescriptionShort': {
+            required: 'Please provide a password',
+            minlength: 'Your password must be at least 6 characters long'
+        },
+        'ProductDescriptionLong': {
             required: 'Please provide a password',
             minlength: 'Your password must be at least 6 characters long'
         }
@@ -329,16 +343,11 @@ function xoa_dau(str) {
         //init
         $.MainApp = new MainApp, $.MainApp.Constructor = MainApp
 }(window.jQuery),
-
     //initializing
     function ($) {
         "use strict";
         $.MainApp.init();
     }(window.jQuery);
-
-$('body').bind('cut copy paste', function (e) {
-    e.preventDefault();
-});
 
 $("body").on("contextmenu", function (e) {
     return false;

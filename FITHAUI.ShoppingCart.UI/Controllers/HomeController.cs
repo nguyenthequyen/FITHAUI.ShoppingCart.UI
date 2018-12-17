@@ -39,7 +39,20 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             ViewBag.Category = categoryRepository.GetMenuCategories();
             return View();
         }
-
+        /// <summary>
+        /// Tìm kiếm sản phẩm theo tên sản phẩm
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns></returns>
+        public ActionResult SearchProductByProductName(string productName)
+        {
+            ViewBag.ProductNew = productRepository.GetProducts();
+            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
+            var model = productRepository.SearchProductByProductName(productName);
+            return View(model);
+        }
         public ActionResult MenuPartial()
         {
             var category = categoryRepository.GetMenuCategories();

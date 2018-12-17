@@ -3,6 +3,8 @@
     ViewData["Title"] = "Danh mục sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>
 @{
     IEnumerable<Product> productByCategory = ViewBag.ProductByCategory as IEnumerable<Product>;
     IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
@@ -63,16 +65,10 @@
             </div>
             <div class="col-sm-12 col-lg-9">
                 <div class="product">
-                    @Html.Partial("~/Views/Home/_ProductCategoryPartial.cshtml", productByCategory);
+                    @Html.Partial("~/Views/Home/_ProductCategoryPartial.cshtml", productByCategory)
                 </div>
                 <div class="col-sm-12">
-                    <ul class="page">
-                        <li><a href="#"><i class="fa fa-long-arrow-left"></i> Previous</a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Next <i class="fa fa-long-arrow-right"></i></a></li>
-                    </ul>
+                    @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))
                 </div>
             </div>
         </div>

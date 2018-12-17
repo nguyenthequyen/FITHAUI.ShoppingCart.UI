@@ -48,9 +48,14 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// <summary>
         /// Mô tả sản phẩm
         /// </summary>
-        [DisplayName("Mô tả sản phẩm")]
+        [DisplayName("Mô tả chi tiết")]
         [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
-        public string ProductDescription { get; set; }
+        public string ProductDescriptionLong { get; set; }        /// <summary>
+        /// Mô tả sản phẩm
+        /// </summary>
+        [DisplayName("Mô tả ngắn")]
+        [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
+        public string ProductDescriptionShort { get; set; }
         /// <summary>
         /// Tình trạng sản phẩm
         /// </summary>
@@ -86,7 +91,7 @@ namespace FITHAUI.ShoppingCart.UI.Models
         {
         }
 
-        public Product(int productId, string productName, decimal? productPrice, int? productAmount, string productColor, string productImage, string productDescription, int? productStatus, string productCode, DateTime createdDate, int modifyDate, int productRatting, int productNew, int categoryId, Category category)
+        public Product(int productId, string productName, decimal? productPrice, int? productAmount, string productColor, string productImage, string productDescriptionShort, string productDescriptionLong, int? productStatus, string productCode, DateTime createdDate, int modifyDate, int productRatting, int productNew, int categoryId, Category category)
         {
             ProductId = productId;
             ProductName = productName;
@@ -94,7 +99,8 @@ namespace FITHAUI.ShoppingCart.UI.Models
             ProductAmount = productAmount;
             ProductColor = productColor;
             ProductImage = productImage;
-            ProductDescription = productDescription;
+            ProductDescriptionLong = productDescriptionLong;
+            ProductDescriptionShort = productDescriptionShort;
             ProductStatus = productStatus;
             ProductCode = productCode;
             CreatedDate = createdDate;

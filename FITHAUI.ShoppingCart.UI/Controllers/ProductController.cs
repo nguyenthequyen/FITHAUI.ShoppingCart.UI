@@ -217,14 +217,45 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 return Redirect("GetAllProductList");
             }
         }
-        public IActionResult GetProductByCategoryId(string categoryId)
+        /// <summary>
+        /// Trả về ds sản phẩm theo danh mục sản phẩm
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        //public IActionResult GetProductByCategoryId(string categoryId)
+        //{
+        //    var model = productRepository.GetProductByCategoryId(categoryId);
+        //    ViewBag.ProductNew = productRepository.GetProducts();
+        //    ViewBag.ProductHost = productRepository.GetProductsHost();
+        //    ViewBag.Category = categoryRepository.GetMenuCategories();
+        //    ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryId);
+        //    return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model);
+        //}
+        public IActionResult GetProductByCategoryId(string categoryName, int? page)
         {
-            var model = productRepository.GetProductByCategoryId(categoryId);
+            int pageSize = 9;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            var model = productRepository.GetProductByCategoryId(categoryName);
             ViewBag.ProductNew = productRepository.GetProducts();
             ViewBag.ProductHost = productRepository.GetProductsHost();
             ViewBag.Category = categoryRepository.GetMenuCategories();
-            ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryId);
-            return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model);
+            ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryName);
+            return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model.ToPagedList(pageIndex, pageSize));
+        }
+        /// <summary>
+        /// Trả về ds sản phẩm tìm kiếm theo tên
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public ActionResult SearchProductByProductName(string productName)
+        {
+            ViewBag.ProductNew = productRepository.GetProducts();
+            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
+            var model = productRepository.SearchProductByProductName(productName);
+            return View(model);
         }
     }
 }

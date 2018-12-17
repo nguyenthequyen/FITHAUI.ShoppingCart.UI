@@ -94,14 +94,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductDescriptionShort" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductDescriptionShort" class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductDescriptionShort" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="mb-2 validate-input">
                                     <div class="row">
                                         <div class="col-lg-2 col-md-2 col-2">
-                                            <label asp-for="ProductDescription" class="pt-2"></label>
+                                            <label asp-for="ProductDescriptionLong" class="pt-2"></label>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
-                                            @Html.TextArea("ProductDescription", null, new { @class = "form-control", @id = "ProductDescription", @name = "ProductDescription" })
-                                            <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                                            @Html.TextArea("ProductDescriptionLong", null, new { @class = "form-control", @id = "ProductDescription", @name = "ProductDescription" })
+                                            <span asp-validation-for="ProductDescriptionLong" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
