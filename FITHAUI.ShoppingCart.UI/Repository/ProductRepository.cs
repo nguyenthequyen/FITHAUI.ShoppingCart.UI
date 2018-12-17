@@ -152,6 +152,8 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     sqlCommand.Parameters.AddWithValue("@ProductCode", product.ProductCode);
                     sqlCommand.Parameters.AddWithValue("@ProductNew", product.ProductNew);
                     sqlCommand.Parameters.AddWithValue("@CategoryId", product.CategoryId);
+                    sqlCommand.Parameters.AddWithValue("@ProductSale", product.ProductSale);
+                    sqlCommand.Parameters.AddWithValue("@ProductBrand", product.ProductBrand);
                     sqlConnection.Open();
                     sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
@@ -234,6 +236,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
                         product.ProductBrand = sqlDataReader["ProductBrand"].ToString();
+                        product.ProductSale = int.Parse(sqlDataReader["ProductSale"].ToString());
                     }
                     sqlConnection.Close();
                 }
@@ -266,6 +269,8 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     sqlCommand.Parameters.AddWithValue("@ProductImage", ProductImage.FileName);
                     sqlCommand.Parameters.AddWithValue("@ProductId", product.ProductId);
                     sqlCommand.Parameters.AddWithValue("@CategoryId", product.CategoryId);
+                    sqlCommand.Parameters.AddWithValue("@ProductSale", product.ProductSale);
+                    sqlCommand.Parameters.AddWithValue("@ProductBrand", product.ProductBrand);
                     sqlConnection.Open();
                     sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();

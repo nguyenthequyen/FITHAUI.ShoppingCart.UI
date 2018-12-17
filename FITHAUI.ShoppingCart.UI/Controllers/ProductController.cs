@@ -95,7 +95,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             if (productRepository.InsertProduct(product, ProductImage))
                             {
                                 TempData["success"] = "Thêm thành công!";
-                                return Redirect("GetAllProductList");
+                                return Redirect("InsertProduct");
                             }
                             else
                             {
