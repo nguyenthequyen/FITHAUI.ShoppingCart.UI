@@ -150,7 +150,6 @@ $('#insertproduct').validate({
 })
 $(function () {
     if ($('#success').val()) {
-        debugger
         displayMessage($('#success').val(), 'success');
     }
     if ($('#info').val()) {

@@ -26,9 +26,6 @@
 </head>
 
 <body class="fixed-left">
-    @{
-        Html.RenderPartialAsync("_Alerts");
-    }
     <input type="hidden" id="success" value="@TempData["success"]" />
     <input type="hidden" id="info" value="@TempData["info"]" />
     <input type="hidden" id="info" value="@TempData["warning"]" />
