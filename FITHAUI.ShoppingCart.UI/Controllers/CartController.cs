@@ -15,14 +15,14 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         public IActionResult ViewCart()
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
             ViewBag.Category = categoryRepository.GetMenuCategories();
             return View();
         }
         public IActionResult CheckOut()
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
             ViewBag.Category = categoryRepository.GetMenuCategories();
             return View();
         }

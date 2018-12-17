@@ -40,6 +40,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
                         product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
+                        product.ProductSale = int.Parse(sqlDataReader["ProductSale"].ToString());
                         products.Add(product);
                     }
                     sqlConnection.Close();
@@ -52,14 +53,14 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
-        public IEnumerable<Product> GetProductsHost()
+        public IEnumerable<Product> GetProductsHot()
         {
             try
             {
                 List<Product> products = new List<Product>();
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    SqlCommand sqlCommand = new SqlCommand("Proc_GetProductNew", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand("Proc_GetProductHot", sqlConnection);
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlConnection.Open();
                     SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -73,6 +74,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
+                        product.ProductSale = int.Parse(sqlDataReader["ProductSale"].ToString());
                         products.Add(product);
                     }
                     sqlConnection.Close();
@@ -109,6 +111,8 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         product.ProductDescriptionLong = sqlDataReader["ProductDescriptionLong"].ToString();
                         product.ProductBrand = sqlDataReader["ProductBrand"].ToString();
+                        product.ProductStatus = int.Parse(sqlDataReader["ProductStatus"].ToString());
+                        product.ProductSale = int.Parse(sqlDataReader["ProductSale"].ToString());
                         products.Add(product);
                     }
                     sqlConnection.Close();
@@ -329,6 +333,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductCode = sqlDataReader["ProductCode"].ToString();
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
+                        product.ProductSale = int.Parse(sqlDataReader["ProductSale"].ToString());
                         products.Add(product);
                     }
                     sqlConnection.Close();

@@ -1,4 +1,7 @@
-﻿@foreach (var item in Model)
+﻿@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
 {
     <div class="item">
         <span class="new">New</span>
@@ -22,6 +25,16 @@
             }
         </ul>
         <p>@item.ProductName</p>
-        <p class="price"><span>@item.ProductPrice</span><span class="del">@item.ProductPrice</span></p>
+        <p class="price">
+            <span>
+                @{
+                    var price = item.ProductPrice;
+                    var cost = (price * item.ProductSale) / 100;
+                }
+                @String.Format(info, "{0:c}", cost)
+            </span><span class="del">
+                @String.Format(info, "{0:c}", item.ProductPrice)
+            </span>
+        </p>
     </div>
 }

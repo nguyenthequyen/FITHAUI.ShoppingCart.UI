@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.Product>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
 @foreach (var item in Model)
 {
     <form asp-action="SelectProductByProductCode" method="post" asp-controller="Product">
@@ -6,7 +9,9 @@
             <th class="text-left">@item.ProductCode</th>
             <th class="text-left">@item.ProductName</th>
             <th class="text-left">@item.ProductColor</th>
-            <th class="text-left">@item.ProductPrice</th>
+            <th class="text-left">
+                @String.Format(info, "{0:c}", item.ProductPrice)
+            </th>
             <th class="text-right">@item.ProductAmount</th>
             @{
                 if (item.ProductStatus == 1)
