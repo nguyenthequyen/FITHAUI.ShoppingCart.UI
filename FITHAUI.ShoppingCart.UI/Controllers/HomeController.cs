@@ -28,7 +28,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 ViewBag.NumberVisitAmount = homeRepository.GetNumberVisitor();
             }
             ModelState.Clear();
-            ViewBag.ProductNew = productRepository.GetProducts();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHost();
             ViewBag.Category = categoryRepository.GetMenuCategories();
             return View();
@@ -40,7 +40,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <returns></returns>
         public ActionResult SearchProductByProductName(string productName)
         {
-            ViewBag.ProductNew = productRepository.GetProducts();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHost();
             ViewBag.Category = categoryRepository.GetMenuCategories();
             ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
@@ -52,7 +52,15 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var category = categoryRepository.GetMenuCategories();
             return PartialView(category);
         }
-
+        public ActionResult ProductDetails(int productId)
+        {
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHost();
+            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductDetails = productRepository.ProductDetails(productId);
+            var model = productRepository.ProductDetails(productId);
+            return View(model);
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
