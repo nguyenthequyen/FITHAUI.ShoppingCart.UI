@@ -20,7 +20,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
         /// Lấy danh sách sản phẩm mới nhất
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<Product> GetProductsNew()
         {
             try
             {
@@ -39,6 +39,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
+                        product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
                         products.Add(product);
                     }
                     sqlConnection.Close();
@@ -66,11 +67,11 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                     {
                         Product product = new Product();
                         product.ProductName = sqlDataReader["ProductName"].ToString();
+                        product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
                         product.ProductImage = sqlDataReader["ProductImage"].ToString();
                         product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductColor = sqlDataReader["ProductColor"].ToString();
-                        product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         products.Add(product);
                     }
@@ -84,6 +85,43 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
+        public IEnumerable<Product> ProductDetails(int productId)
+        {
+            try
+            {
+                List<Product> products = new List<Product>();
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_GetProductDetailByProductId", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@ProductId", productId);
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        Product product = new Product();
+                        product.ProductName = sqlDataReader["ProductName"].ToString();
+                        product.ProductImage = sqlDataReader["ProductImage"].ToString();
+                        product.ProductPrice = Decimal.Parse(sqlDataReader["ProductPrice"].ToString());
+                        product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
+                        product.ProductColor = sqlDataReader["ProductColor"].ToString();
+                        product.ProductCode = sqlDataReader["ProductCode"].ToString();
+                        product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
+                        product.ProductDescriptionLong = sqlDataReader["ProductDescriptionLong"].ToString();
+                        product.ProductBrand = sqlDataReader["ProductBrand"].ToString();
+                        products.Add(product);
+                    }
+                    sqlConnection.Close();
+                }
+                return products;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Thêm sản phẩm
         /// </summary>
@@ -151,6 +189,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductRatting = int.Parse(sqlDataReader["ProductRatting"].ToString());
                         product.ProductNew = int.Parse(sqlDataReader["ProductNew"].ToString());
                         product.ProductCode = sqlDataReader["ProductCode"].ToString();
+                        product.ProductBrand = sqlDataReader["ProductBrand"].ToString();
                         products.Add(product);
                     }
                     sqlConnection.Close();
@@ -164,7 +203,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             return products;
         }
 
-        public Product GetProductByProcductCode(string productId)
+        public Product GetProductByProcductCode(int productId)
         {
             Product product = new Product();
             try
@@ -190,6 +229,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         product.ProductCode = sqlDataReader["ProductCode"].ToString();
                         product.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
                         product.ProductId = int.Parse(sqlDataReader["ProductId"].ToString());
+                        product.ProductBrand = sqlDataReader["ProductBrand"].ToString();
                     }
                     sqlConnection.Close();
                 }

@@ -3,15 +3,41 @@
 {
     <form asp-action="SelectProductByProductCode" method="post" asp-controller="Product">
         <tr class="text-center">
-            <th>@item.ProductCode</th>
-            <th>@item.ProductName</th>
-            <th>@item.ProductColor</th>
-            <th>@item.ProductPrice</th>
-            <th>@item.ProductAmount</th>
-            <th>@item.ProductStatus</th>
-            <th>@item.ProductRatting</th>
-            <th>@item.ProductNew</th>
-            <th>@item.ProductDescriptionShort</th>
+            <th class="text-left">@item.ProductCode</th>
+            <th class="text-left">@item.ProductName</th>
+            <th class="text-left">@item.ProductColor</th>
+            <th class="text-left">@item.ProductPrice</th>
+            <th class="text-right">@item.ProductAmount</th>
+            @{
+                if (item.ProductStatus == 1)
+                {
+                    <th class="text-left">Còn hàng</th>
+                }
+                else if (item.ProductStatus == 1)
+                {
+                    <th class="text-left">Hết hàng</th>
+                }
+                else
+                {
+                    <th class="text-left">Chưa xác định</th>
+                }
+            }
+            <th class="text-right">@item.ProductRatting</th>
+            @{
+                if (item.ProductNew == 1)
+                {
+                    <th class="text-left">Mới</th>
+                }
+                else if (item.ProductNew == 1)
+                {
+                    <th class="text-left">Cũ</th>
+                }
+                else
+                {
+                    <th class="text-left">Chưa xác định</th>
+                }
+            }
+            <th class="text-left">@item.ProductBrand</th>
             <th>
                 <div class="pl-3 float-left btn-edit">
                     <a asp-action="GetProductByProcductCode" asp-controller="Product" asp-route-productId="@item.ProductId"><i class="fas fa-edit text-success"></i></a>
