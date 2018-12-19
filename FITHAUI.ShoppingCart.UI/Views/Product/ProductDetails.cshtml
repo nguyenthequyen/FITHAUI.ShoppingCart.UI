@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Thêm sản phẩm";
+    Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
+}
+
+@model FITHAUI.ShoppingCart.UI.Models.Product
+<div class="content">
+    <div class="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <div class="container-login100-form-btn">
+                                <form action="/" method="post">
+                                    <button class="login100-form-btn btn btn-primary btn-cencal" type="submit" id="updateproduct" asp-action="GetAllProductList" asp-controller="Product">Quay lại</button>
+                                </form>
+                            </div>
+                            <form class="login100-for validate-form form-insert" method="post" asp-action="UpdateProduct" enctype="multipart/form-data">
+                                <div class="mb-2 mt-4 validate-input d-none">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductId" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductId" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 mt-4 validate-input">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductName" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductName" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductCode" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductCode" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductCode" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductPrice" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductPrice" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductAmount" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductAmount" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductAmount" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductColor" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductColor" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductColor" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2 pt-4">
+                                            <label asp-for="ProductImage" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductImage" type="file" class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductImage" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductDescriptionShort" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductDescriptionShort" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductDescriptionShort" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductDescriptionLong" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            @Html.TextArea("ProductDescriptionLong", null, new { @class = "form-control", @disabled = true, @id = "ProductDescription", @name = "ProductDescription" })
+                                            <span asp-validation-for="ProductDescriptionLong" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="CategoryId" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            @Html.DropDownList("CategoryId", ViewBag.ListCategory, null, new { @class = "btn btn-secondary w-100 text-dark bg-white dropdown-toggle", @disabled = true })
+                                            @Html.ValidationMessageFor(model => model.CategoryId)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductNew" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            @Html.DropDownListFor(m => m.ProductNew, new List<SelectListItem>
+                                           {
+                                              new SelectListItem{Text="Mới", Value="1"},
+                                              new SelectListItem{Text="Cũ", Value="0"}
+                                           },
+                                              new { @class = "btn btn-secondary w-100 text-dark bg-white dropdown-toggle" , @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2">
+                                            <label asp-for="ProductStatus" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            @Html.DropDownListFor(m => m.ProductStatus, new List<SelectListItem>
+                                            {
+                                               new SelectListItem{Text="Còn hàng", Value="1"},
+                                               new SelectListItem{Text="Hết hàng", Value="0"}
+                                            },
+                                                new { @class = "btn btn-secondary w-100 text-dark bg-white dropdown-toggle", @disabled = true })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2 pt-4">
+                                            <label asp-for="ProductBrand" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductBrand" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductBrand" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>                              <div class="mb-2 validate-input" data-validate="Password is required">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-2 pt-4">
+                                            <label asp-for="ProductSale" class="pt-2"></label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <input asp-for="ProductSale" disabled class="form-control border border-secondary" />
+                                            <span asp-validation-for="ProductSale" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -45,6 +45,9 @@
             <th class="text-left">@item.ProductBrand</th>
             <th>
                 <div class="pl-3 float-left btn-edit">
+                    <a asp-action="ProductDetails" asp-controller="Product" asp-route-productId="@item.ProductId"><i class="fas fa-info-circle"></i></a>
+                </div>
+                <div class="pl-3 float-left btn-edit">
                     <a asp-action="GetProductByProcductCode" asp-controller="Product" asp-route-productId="@item.ProductId"><i class="fas fa-edit text-success"></i></a>
                 </div>
                 <div class="pl-1">

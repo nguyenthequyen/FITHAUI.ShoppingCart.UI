@@ -2,6 +2,13 @@
 @{
     ViewData["Title"] = "ViewCart";
 }
+@model CartIndexViewModel
+@{
+    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
+    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
+    IEnumerable<Product> productSearch =ViewBag.ProductSearch as IEnumerable<Product>;
+    IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+}
 <!--======== Fix Button  =================-->
 <ul class="fixbutton">
     <li><a href="#categorie" data-toggle="modal"><span>Categories</span><i class="fa fa-align-justify"></i></a></li>

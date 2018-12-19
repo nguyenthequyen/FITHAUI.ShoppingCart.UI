@@ -248,5 +248,11 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var model = productRepository.SearchProductByProductName(productName);
             return View(model);
         }
+        public ActionResult ProductDetails(int productId)
+        {
+            var model = productRepository.GetProductByProcductCode(productId);
+            ViewBag.ListCategory = categoryRepository.GetCategories();
+            return View("ProductDetails", model);
+        }
     }
 }
