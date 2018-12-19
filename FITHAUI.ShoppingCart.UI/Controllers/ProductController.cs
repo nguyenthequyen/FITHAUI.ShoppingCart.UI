@@ -131,7 +131,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         [Authorize]
         public IActionResult GetProductByProcductCode(string productId)
         {
-            var model = productRepository.GetProductByProcductCode(productId);
+            var model = productRepository.GetProductByProcductCode(int.Parse(productId));
             ViewBag.ListCategory = categoryRepository.GetCategories();
             return View("EditProduct", model);
         }

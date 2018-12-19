@@ -164,7 +164,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             return products;
         }
 
-        public Product GetProductByProcductCode(string productId)
+        public Product GetProductByProcductCode(int productId)
         {
             Product product = new Product();
             try
