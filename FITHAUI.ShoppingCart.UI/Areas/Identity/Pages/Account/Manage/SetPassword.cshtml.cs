@@ -57,7 +57,7 @@ namespace SendMailKit.Areas.Identity.Pages.Account.Manage
                 return RedirectToPage("./ChangePassword");
             }
 
-            return Page();
+            return Redirect("~/Areas/Identity/Pages/Account/Manage/SetPassword");
         }
 
         public async Task<IActionResult> OnPostAsync()

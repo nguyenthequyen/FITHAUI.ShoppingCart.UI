@@ -3,7 +3,7 @@
     Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
 }
 @*@using X.PagedList.Mvc.Core;
-@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>*@
+    @model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>*@
 <div class="content">
     <div class="page-content-wrapper">
         <div class="container-fluid">
@@ -35,24 +35,23 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="text-center">
-                                        <th>Mã sản phẩm</th>
+                                        <th>Họ tên</th>
+                                        <th>Điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Email</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Màu sắc</th>
-                                        <th>Giá bán</th>
                                         <th>Số lượng</th>
+                                        <th>Tổng tiền</th>
                                         <th>Tình trạng</th>
-                                        <th>Đánh giá</th>
-                                        <th>Sản phẩm mới</th>
-                                        <th>Mô tả</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @*<partial name="_AllProductListPartial" />*@
+                                    <partial name="_CartPartial" />
                                 </tbody>
                             </table>
                             @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
-                            @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))*@
+                                @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))*@
                         </div>
                     </div>
                 </div>

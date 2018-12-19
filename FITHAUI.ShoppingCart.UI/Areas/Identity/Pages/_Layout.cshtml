@@ -128,12 +128,35 @@
                             <img src="/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
-                            <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted"></i> Logout</a>
+                            @using Microsoft.AspNetCore.Identity
+
+                            @inject SignInManager<IdentityUser> SignInManager
+                            @inject UserManager<IdentityUser> UserManager
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm">
+                                    <ul class="hlogin">
+                                        @*<li>
+                                                <a class="active" asp-controller="Home" asp-action="Index" title="Trang chủ"><i class="fa fa-angle-double-left"></i>Trang chủ</a>
+                                            </li>*@
+                                        <li>
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="text-success">@UserManager.GetUserName(User)!</a>
+                                        </li>
+                                        <li class="pl-0">
+                                            <button type="submit" class="text-success btn-link navbar-link">Đăng xuất</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            }
+                            else
+                            {
+                                <ul class="hlogin">
+                                    <li><a class="active" asp-controller="Home" asp-action="Index" title="Trang chủ"><i class="fa fa-angle-double-left"></i>Trang chủ</a></li>
+                                    <li><a asp-area="Identity" asp-page="/Account/Login" title="Login"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+                                    <li><a asp-area="Identity" asp-page="/Account/Register" title="Register"><i class="fa fa-user"></i>Đăng ký</a></li>
+                                </ul>
+                            }
                         </div>
                     </li>
                 </ul>
@@ -165,28 +188,20 @@
                         </li>
                         <li class="has_sub">
                             <a class="waves-effect"><i class="fas fa-user-cog"></i> <span> Quản lý tài khoản <span class="float-right"><i class="mdi mdi-chevron-right"></i></span> </span> </a>
-                            <ul class="list-unstyled">
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-cards.html">Cards</a></li>
-                                <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
-                                <li><a href="ui-modals.html">Modals</a></li>
-                                <li><a href="ui-images.html">Images</a></li>
-                                <li><a href="ui-alerts.html">Alerts</a></li>
-                                <li><a href="ui-progressbars.html">Progress Bars</a></li>
-                                <li><a href="ui-dropdowns.html">Dropdowns</a></li>
-                                <li><a href="ui-navs.html">Navs</a></li>
-                                <li><a href="ui-pagination.html">Pagination</a></li>
-                                <li><a href="ui-popover-tooltips.html">Popover & Tooltips</a></li>
-                                <li><a href="ui-badge.html">Badge</a></li>
-                                <li><a href="ui-carousel.html">Carousel</a></li>
-                                <li><a href="ui-video.html">Video</a></li>
-                                <li><a href="ui-typography.html">Typography</a></li>
-                                <li><a href="ui-sweet-alert.html">Sweet-Alert</a></li>
-                                <li><a href="ui-grid.html">Grid</a></li>
-                                <li><a href="ui-nestable.html">Nestable</a></li>
-                                <li><a href="ui-alertify.html">Alertify</a></li>
-                                <li><a href="ui-rangeslider.html">Range Slider</a></li>
-                            </ul>
+                            @*@inject SignInManager<IdentityUser> SignInManager
+                            @{
+                                var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+                            }
+                            <ul class="nav nav-pills nav-stacked ul-display-gird">
+                                <li><a asp-page="./Index">Thông tin cá nhân</a></li>
+                                <li><a id="change-password" asp-page="./ChangePassword">Quản lý mật khẩu</a></li>
+                                @if (hasExternalLogins)
+                                {
+                                    <li><a id="external-login" asp-page="./ExternalLogins">External logins</a></li>
+                                }
+                                <li><a asp-page="./TwoFactorAuthentication">Bảo mật hai lớp</a></li>
+                                <li><a asp-page="./PersonalData">Dữ liệu cá nhân</a></li>
+                            </ul>*@
                         </li>
                     </ul>
                 </div>
