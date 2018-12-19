@@ -49,7 +49,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
-        public IEnumerable<Category> GetMenuCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
             List<Category> categories = new List<Category>();
             try
@@ -65,6 +65,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                         categories.Add(new Category
                         {
                             CategoryName = sqlDataReader["CategoryName"].ToString(),
+                            CategoryCode = sqlDataReader["CategoryCode"].ToString(),
                             CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString())
                         });
                     }
@@ -77,6 +78,82 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 Console.WriteLine(ex.Message);
             }
             return categories;
+        }
+        public Category GetCategoryByCategoryId(int categoryId)
+        {
+            Category categorie = new Category();
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_GetCategoryById", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    while (sqlDataReader.Read())
+                    {
+                        categorie.CategoryId = int.Parse(sqlDataReader["CategoryId"].ToString());
+                        categorie.CategoryName = sqlDataReader["CategoryName"].ToString();
+                        categorie.CategoryCode = sqlDataReader["CategoryCode"].ToString();
+                    }
+                    sqlConnection.Close();
+                }
+                return categorie;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return categorie;
+        }
+        public bool CreatedCategory(Category category)
+        {
+            bool check = false;
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_InsertCategory", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryCode", category.CategoryCode);
+                    sqlCommand.Parameters.AddWithValue("@CategoryName", category.CategoryName);
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                check = false;
+            }
+            return check;
+        }public bool EditCategory(Category category)
+        {
+            bool check = false;
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_UpdateCategory ", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryCode", category.CategoryCode);
+                    sqlCommand.Parameters.AddWithValue("@CategoryName", category.CategoryName);
+                    sqlCommand.Parameters.AddWithValue("@CategoryId", category.CategoryId);
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                check = false;
+            }
+            return check;
         }
     }
 }

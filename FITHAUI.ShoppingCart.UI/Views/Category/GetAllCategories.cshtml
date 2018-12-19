@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "InsertProduct";
+    Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Category>
+<div class="content">
+    <div class="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <div class="container-login100-form-btn">
+                                <a asp-action="InsertCategory" asp-controller="Category" class="waves-effect btn btn-primary"><i class="fas fa-plus"></i><span> Thêm loại phẩm </span></a>
+                            </div>
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn btn display-none btn-primary btn-cencal">Hủy</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-0">
+    <div class="page-content-wrapper pt-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Id loại sản phẩm</th>
+                                        <th>Mã loại sản phẩm</th>
+                                        <th>Loại sản phẩm</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <partial name="_CategoryPartial" />
+                                </tbody>
+                            </table>
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("GetAllCategories", new { page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

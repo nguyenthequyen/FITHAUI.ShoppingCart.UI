@@ -30,7 +30,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             ModelState.Clear();
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             return View();
         }
         /// <summary>
@@ -42,21 +42,21 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
             var model = productRepository.SearchProductByProductName(productName);
             return View(model);
         }
         public ActionResult MenuPartial()
         {
-            var category = categoryRepository.GetMenuCategories();
+            var category = categoryRepository.GetAllCategories();
             return PartialView(category);
         }
         public ActionResult ProductDetails(int productId)
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductDetails = productRepository.ProductDetails(productId);
             var model = productRepository.ProductDetails(productId);
             return View(model);

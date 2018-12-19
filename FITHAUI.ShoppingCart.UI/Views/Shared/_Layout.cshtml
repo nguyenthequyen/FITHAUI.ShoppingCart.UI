@@ -70,7 +70,7 @@
                 <!-- Logo -->
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 text-center">
                     <div class="search">
-                        <form  method="post" asp-action="SearchProductByProductName" asp-controller="Home">
+                        <form method="post" asp-action="SearchProductByProductName" asp-controller="Home">
                             <input type="search" name="productName" id="productName" placeholder="Tìm kiếm">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -143,10 +143,12 @@
                                 <a href="javascript:void(0)" title="Catlog">Danh mục sản phẩm<i class="fa fa-angle-down"></i></a>
                                 <!-- SUBMENU -->
                                 <div class="submenus">
-                                    @{
-                                        IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
-                                        @Html.Partial("~/Views/Home/MenuPartial.cshtml", category);
-                                    }
+                                    <ul class="col-sm-12 col-lg-3">
+                                        @{
+                                            IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+                                            @Html.Partial("~/Views/Home/MenuPartial.cshtml", category);
+                                        }
+                                    </ul>
                                 </div>
                                 <!-- /SUBMENU -->
                             </li>
