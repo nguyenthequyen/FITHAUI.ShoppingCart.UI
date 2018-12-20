@@ -53,6 +53,10 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
+        /// <summary>
+        /// Lấy sản phẩm hót nhất
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Product> GetProductsHot()
         {
             try

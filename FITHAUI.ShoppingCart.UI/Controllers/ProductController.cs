@@ -76,7 +76,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        TempData["success"] = "Thêm thành công!";
+                        TempData["error"] = "Thất sản phẩm {0} thất bại!"+ product.ProductCode;
                         return View("InsertProduct");
                     }
                     else
@@ -94,31 +94,31 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             }
                             if (productRepository.InsertProduct(product, ProductImage))
                             {
-                                TempData["success"] = "Thêm thành công!";
-                                return Redirect("InsertProduct");
+                                TempData["success"] = "Thêm sản phẩm {0} thành công!" + product.ProductCode;
+                                return Redirect("GetAllProductList");
                             }
                             else
                             {
-                                TempData["error"] = "Thêm thất bại!";
+                                TempData["error"] = "Thêm sản phẩm {0} thất bại!" + product.ProductCode;
                                 return Redirect("GetAllProductList");
                             }
                         }
                         else
                         {
-                            TempData["error"] = "Thêm thất bại!";
+                            TempData["success"] = "Thêm sản phẩm {0} thất bại!" + product.ProductCode;
                             return Redirect("GetAllProductList");
                         }
                     }
                 }
                 else
                 {
-                    TempData["error"] = "Thêm thất bại!";
+                    TempData["success"] = "Bạn chưa đăng nhập!" + product.ProductCode;
                     return Redirect("/Identity/Account/Login");
                 }
             }
             catch (Exception ex)
             {
-                TempData["error"] = "Thêm thất bại!";
+                TempData["success"] = "Thêm sản phẩm {0} thất bại!" + product.ProductCode;
                 Console.WriteLine(ex.Message);
                 return Redirect("GetAllProductList");
             }
@@ -163,36 +163,36 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             }
                             if (productRepository.UpdateProduct(product, ProductImage))
                             {
-                                TempData["success"] = "Thêm thành công!";
+                                TempData["success"] = "Sửa sản phẩm {0} thành công!" + product.ProductCode;
                                 return Redirect("GetAllProductList");
                             }
                             else
                             {
-                                TempData["error"] = "Thêm thất bại!";
+                                TempData["error"] = "Sửa sản phẩm {0} thất bại!" + product.ProductCode;
                                 return Redirect("GetAllProductList");
                             }
                         }
                         else
                         {
-                            TempData["error"] = "Hình ảnh không được để trống, thêm thất bại!";
+                            TempData["error"] = "Sửa sản phẩm {0} thất bại!" + product.ProductCode;
                             return Redirect("GetAllProductList");
                         }
                     }
                     else
                     {
-                        TempData["error"] = "Thêm thất bại!";
+                        TempData["error"] = "Sửa sản phẩm {0} thất bại!" + product.ProductCode;
                         return Redirect("GetAllProductList");
                     }
                 }
                 else
                 {
-                    TempData["error"] = "Thêm thất bại!";
+                    TempData["error"] = "Bạn chưa đăng nhập!";
                     return Redirect("/Identity/Account/Login");
                 }
             }
             catch (Exception ex)
             {
-                TempData["error"] = "Thêm thất bại!";
+                TempData["error"] = "Sửa sản phẩm {0} thất bại!" + product.ProductCode;
                 Console.WriteLine(ex.Message);
                 return Redirect("GetAllProductList");
             }
@@ -208,12 +208,12 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var check = productRepository.DeleteProduct(productId);
             if (check)
             {
-                TempData["success"] = "Xóa thành công";
+                TempData["success"] = "Xóa sản phẩm  {0} thành công" + productId;
                 return Redirect("GetAllProductList");
             }
             else
             {
-                TempData["error"] = "Xóa thành thất bại";
+                TempData["error"] = "Xóa sản phẩm  {0} thất bại" + productId;
                 return Redirect("GetAllProductList");
             }
         }
