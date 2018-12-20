@@ -20,6 +20,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
             if (cart != null)
             {
+                TempData["success"] = "Thêm sản phẩm vào giỏ hàng thành công!";
                 ViewBag.cart = cart;
                 ViewBag.quanty = cart.Sum(x => x.Quantity);
                 ViewBag.total = cart.Sum(item => item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
@@ -27,6 +28,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             }
             else
             {
+                TempData["error"] = "Thêm sản phẩm vào giỏ hàng thất bại!";
                 ViewBag.Category = categoryRepository.GetAllCategories();
             }
             return View("ViewCart");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FITHAUI.ShoppingCart.UI.Models;
 using FITHAUI.ShoppingCart.UI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -90,6 +91,26 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             {
                 TempData["error"] = "Thêm thất bại!";
                 Console.WriteLine(ex.Message);
+                return Redirect("GetAllCategories");
+            }
+        }
+        /// <summary>
+        /// Xóa sản phẩm
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [Authorize]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            var check = categoryRepository.DeleteCategory(categoryId);
+            if (check)
+            {
+                TempData["success"] = "Xóa danh mục sản phẩm {0} thành công" + categoryId;
+                return Redirect("GetAllCategories");
+            }
+            else
+            {
+                TempData["error"] = "Xóa danh mục sản phẩm {0} thất bại" + categoryId;
                 return Redirect("GetAllCategories");
             }
         }

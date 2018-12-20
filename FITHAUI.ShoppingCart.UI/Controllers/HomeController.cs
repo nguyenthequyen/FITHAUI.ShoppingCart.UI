@@ -15,6 +15,10 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         HomeRepository homeRepository = new HomeRepository();
         CategoryRepository categoryRepository = new CategoryRepository();
         //Action Controller
+        /// <summary>
+        /// NTHanh HIển thị sản phẩm
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var count = homeRepository.GetNumberVisitor();
@@ -28,9 +32,10 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             }
             else
             {
+                
                 ViewBag.NumberVisitAmount = homeRepository.GetNumberVisitor();
             }
-            ModelState.Clear();
+            //ModelState.Clear();
             var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
             if (cart == null)
             {
@@ -54,6 +59,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// </summary>
         /// <param name="productName"></param>
         /// <returns></returns>
+        /// NTHanh
         public ActionResult SearchProductByProductName(string productName)
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
@@ -68,6 +74,10 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var category = categoryRepository.GetAllCategories();
             return PartialView(category);
         }
+        /// <summary>
+        /// Chi tiết sản phẩm
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ProductDetails(int productId)
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();

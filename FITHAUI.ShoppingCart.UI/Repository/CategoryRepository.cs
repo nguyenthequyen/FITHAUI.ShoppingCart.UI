@@ -17,7 +17,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
         }
         string connectionString = GetConnectionString();
         /// <summary>
-        /// Danh mục sản phẩm
+        /// Lấy danh mục sản phẩm đưa lên Dropdowlist
         /// </summary>
         /// <returns></returns>
         public List<SelectListItem> GetCategories()
@@ -49,6 +49,10 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 return null;
             }
         }
+        /// <summary>
+        /// Lấy tất cả danh mục sản phẩm
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Category> GetAllCategories()
         {
             List<Category> categories = new List<Category>();
@@ -79,6 +83,11 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             }
             return categories;
         }
+        /// <summary>
+        /// Lấy danh mục sản phẩm theo Id
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         public Category GetCategoryByCategoryId(int categoryId)
         {
             Category categorie = new Category();
@@ -107,6 +116,11 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             }
             return categorie;
         }
+        /// <summary>
+        /// Thêm danh mục sản phẩm
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         public bool CreatedCategory(Category category)
         {
             bool check = false;
@@ -130,7 +144,13 @@ namespace FITHAUI.ShoppingCart.UI.Repository
                 check = false;
             }
             return check;
-        }public bool EditCategory(Category category)
+        }
+        /// <summary>
+        /// Sửa danh mục sản phẩm
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public bool EditCategory(Category category)
         {
             bool check = false;
             try
@@ -152,6 +172,29 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             {
                 Console.WriteLine(ex.Message);
                 check = false;
+            }
+            return check;
+        }
+        public bool DeleteCategory(int categoryId)
+        {
+            var check = false;
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("Proc_DeleteCategory", sqlConnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@CategoryId", categoryId);
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    check = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                check = false;
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
             return check;
         }
