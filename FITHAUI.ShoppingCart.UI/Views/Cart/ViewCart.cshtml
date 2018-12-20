@@ -4,9 +4,6 @@
 }
 @model CartIndexViewModel
 @{
-    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
-    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
-    IEnumerable<Product> productSearch =ViewBag.ProductSearch as IEnumerable<Product>;
     IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
 }
 <!--======== Fix Button  =================-->
@@ -30,39 +27,22 @@
                             <tr>
                                 <th class="text-center">Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Size</th>
+                                <th>Giảm giá</th>
                                 <th>Số lượng</th>
                                 <th class="text-right">Đơn giá</th>
                                 <th class="text-right">Tổng tiền</th>
                             </tr>
-                            <tr>
-                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
-                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
-                                <td>e19</td>
-                                <td>
-                                    <ul>
-                                        <li><input type="text" class="inputtext" placeholder="1"></li>
-                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
-                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
-                                    </ul>
-                                </td>
-                                <td class="text-right">$ 56</td>
-                                <td class="text-right">$ 56</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
-                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
-                                <td>e19</td>
-                                <td>
-                                    <ul>
-                                        <li><input type="text" class="inputtext" placeholder="1"></li>
-                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
-                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
-                                    </ul>
-                                </td>
-                                <td class="text-right">$ 56</td>
-                                <td class="text-right">$ 56</td>
-                            </tr>
+                            @foreach (var item in Model.Cart.Lines)
+                            {
+                                <tr>
+                                    <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/Product/@item.Product.ProductImage" alt="cartimg"></a></td>
+                                    <td>@item.Product.ProductName</td>
+                                    <td>@item.Product.ProductSale %</td>
+                                    <td><input type="text" class="inputtext" placeholder="1"></td>
+                                    <td class="text-right">@item.Product.ProductPrice</td>
+                                    <td class="text-right">@(item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100)</td>
+                                </tr>
+                            }
                         </table>
                     </div>
                 </div>
