@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using FITHAUI.ShoppingCart.UI.Models;
 using FITHAUI.ShoppingCart.UI.Repository;
 using Microsoft.AspNetCore.Http;
+using FITHAUI.ShoppingCart.UI.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
@@ -28,9 +31,22 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 ViewBag.NumberVisitAmount = homeRepository.GetNumberVisitor();
             }
             ModelState.Clear();
-            ViewBag.ProductNew = productRepository.GetProductsNew();
-            ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetAllCategories();
+            var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            if (cart == null)
+            {
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            else
+            {
+                ViewBag.cart = cart;
+                ViewBag.quanty = cart.Sum(x => x.Quantity);
+                ViewBag.total = cart.Sum(item => item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
             return View();
         }
         /// <summary>

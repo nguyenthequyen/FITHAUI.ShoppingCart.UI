@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace FITHAUI.ShoppingCart.UI.Infrastructure
 {
-    public static class SessionExtensions
+
+    public static class SessionHelper
     {
-        public static void SetJson(this ISession session, string key, object value)
+        public static void SetObjectAsJson(this ISession session, string key, object value)
         {
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
-        public static T GetJson<T>(this ISession session, string key)
+
+        public static T GetObjectFromJson<T>(this ISession session, string key)
         {
-            var sessionData = session.GetString(key);
-            return sessionData == null
-           ? default(T) : JsonConvert.DeserializeObject<T>(sessionData);
+            var value = session.GetString(key);
+            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
         }
     }
 }

@@ -1110,3 +1110,6 @@ p{font-size: 14px;line-height: 20px;}
 .blogin .social ul li:first-child{float: inherit;}
 .blogin .social ul li{padding-left: 5px;}
 }
+.height-img-cart{
+    height:100px;
+}
