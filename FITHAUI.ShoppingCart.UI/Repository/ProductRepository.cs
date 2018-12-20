@@ -171,7 +171,7 @@ namespace FITHAUI.ShoppingCart.UI.Repository
             }
             return check;
         }
-        public IEnumerable<Product> GetAllProducts(string startDate, string endDate)
+        public IEnumerable<Product> GetAllProducts()
         {
             List<Product> products = new List<Product>();
             try

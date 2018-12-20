@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Giới thiệu sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
+    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
+    IEnumerable<Product> productSearch = ViewBag.ProductSearch as IEnumerable<Product>;
+    IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+    IEnumerable<CartIndexViewModel> cart = ViewBag.cart as IEnumerable<CartIndexViewModel>;
+}
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>
+<div class="blog in">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-9">
+                @Html.Partial("_AboutProductPartial.cshtml")
+                <div class="col-sm-12">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("AboutProduct", new { page }))
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-3">
+                <div class="blogsidebox">
+                    <form asp-controller="Home" asp-action="SearchProductByProductName" method="post">
+                        <input type="text" value="" name="productName" id="productName" class="" placeholder="Search">
+                        <button type="submit" class=""><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="blogsidebox">
+                    <h4>Danh mục sản phẩm</h4>
+                    <ul class="cat">
+                        @Html.Partial("~/Views/Home/VerticalMenu.cshtml", category)
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

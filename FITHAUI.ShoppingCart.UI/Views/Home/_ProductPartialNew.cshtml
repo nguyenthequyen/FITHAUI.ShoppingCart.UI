@@ -11,8 +11,8 @@
             <li><a asp-action="ProductDetails" asp-controller="Home" asp-route-productId="@item.ProductId" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fa fa-eye"></i></a></li>
         </ul>
         <a href="#">
-            <img src="~/images/Product/@item.ProductImage" alt="shirt" class="normal">
-            <img src="~/images/Product/@item.ProductImage" alt="shirt" class="hoverimg">
+            <img src="~/images/Product/@item.ProductImage" alt="shirt" class="normal"   style="width:213px; height: 280px;">
+            <img src="~/images/Product/@item.ProductImage" alt="shirt" class="hoverimg" style="width:213px; height: 280px;">
         </a>
         <ul class="rating">
             @for (int i = 0; i < item.ProductRatting; i++)

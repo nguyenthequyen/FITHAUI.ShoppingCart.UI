@@ -1,0 +1,23 @@
+﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.Product>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
+{
+    <div class="col-xs-12 col-sm-6 col-lg-6">
+        <div class="box">
+            <div class="blogsidebar">
+                <img src="~/images/Product/@item.ProductImage" alt="News" style="width: 500px; height: 346px;">
+                <div class="overlay">
+                    <ul>
+                        <li><a href="#" title="Comment"><i class="fa fa-comment"></i> 0 bình luận</a></li>
+                        <li><a href="#" title="Date"><i class="fa fa-calendar"></i> 13-10-2017</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" title="" class="head">@item.ProductName</a>
+            <p>@item.ProductDescriptionLong</p>
+            <a asp-action="ProductDetails" asp-controller="Home" asp-route-productId="@item.ProductId" title="Read More" class="read">Đọc thêm</a>
+        </div>
+    </div>
+}

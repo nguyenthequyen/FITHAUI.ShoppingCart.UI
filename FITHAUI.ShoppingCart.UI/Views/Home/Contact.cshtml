@@ -1,17 +1,57 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Thông tin liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@{
+    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
+    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
+    IEnumerable<Product> productSearch = ViewBag.ProductSearch as IEnumerable<Product>;
+    IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+    IEnumerable<CartIndexViewModel> cart = ViewBag.cart as IEnumerable<CartIndexViewModel>;
+}
+<section>
+    <div class="container">
+        <div class="row product">
+            <div class="col-sm-12 text-center tabdata">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="latest">
+                        <div class="owl-carousel pbox text-xl-left">
+                            <address>
+                                Khoa công nghệ thông tin - ĐHCNHN<br />
+                                Số điện thoại: 0334808565<br />
+                                <abbr title="Phone">Địa chỉ:</abbr>
+                                Hà Tĩnh
+                            </address>
+                            <address>
+                                Nhóm 1- CNTT1 - K10<br />
+                                Số điện thoại: 0334808565<br />
+                                <abbr title="Phone">Địa chỉ:</abbr>
+                                Hà Tĩnh
+                            </address>
+                            <address>
+                                Nguyễn Thế Quyền<br />
+                                Số điện thoại: 0334808565<br />
+                                <abbr title="Phone">Địa chỉ:</abbr>
+                                Hà Tĩnh
+                            </address>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+                            <address>
+                                Vũ Văn Đông<br />
+                                Số điện thoại: 0334808565<br />
+                                <abbr title="Phone">Địa chỉ:</abbr>
+                                Hà Tĩnh
+                            </address>
+                            <address>
+                                Nguyễn Thị Hạnh<br />
+                                Số điện thoại: 0334808565<br />
+                                <abbr title="Phone">Địa chỉ:</abbr>
+                                Hà Tĩnh
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>

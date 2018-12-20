@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using FITHAUI.ShoppingCart.UI.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using X.PagedList;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
@@ -96,14 +98,48 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             return View();
         }
 
         public IActionResult Privacy()
         {
+           
             return View();
+        }
+        public IActionResult AboutProduct(int? page)
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            if (cart == null)
+            {
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            else
+            {
+                ViewBag.cart = cart;
+                ViewBag.quanty = cart.Sum(x => x.Quantity);
+                ViewBag.total = cart.Sum(item => item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            int pageSize = 4;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            ModelState.Clear();
+            var model = productRepository.GetAllProducts();
+            if (model == null)
+            {
+                return View("EmptyProduct");
+            }
+            else
+            {
+                return View("AboutProduct", model.ToPagedList(pageIndex, pageSize));
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
