@@ -95,7 +95,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             if (productRepository.InsertProduct(product, ProductImage))
                             {
                                 TempData["success"] = "Thêm thành công!";
-                                return Redirect("GetAllProductList");
+                                return Redirect("InsertProduct");
                             }
                             else
                             {
@@ -129,9 +129,9 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <param name="productId"></param>
         /// <returns></returns>
         [Authorize]
-        public IActionResult GetProductByProcductCode(string productId)
+        public IActionResult GetProductByProcductCode(int productId)
         {
-            var model = productRepository.GetProductByProcductCode(int.Parse(productId));
+            var model = productRepository.GetProductByProcductCode(productId);
             ViewBag.ListCategory = categoryRepository.GetCategories();
             return View("EditProduct", model);
         }
@@ -222,24 +222,15 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        //public IActionResult GetProductByCategoryId(string categoryId)
-        //{
-        //    var model = productRepository.GetProductByCategoryId(categoryId);
-        //    ViewBag.ProductNew = productRepository.GetProducts();
-        //    ViewBag.ProductHost = productRepository.GetProductsHost();
-        //    ViewBag.Category = categoryRepository.GetMenuCategories();
-        //    ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryId);
-        //    return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model);
-        //}
         public IActionResult GetProductByCategoryId(string categoryName, int? page)
         {
             int pageSize = 9;
             int pageIndex = 1;
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
             var model = productRepository.GetProductByCategoryId(categoryName);
-            ViewBag.ProductNew = productRepository.GetProducts();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryName);
             return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model.ToPagedList(pageIndex, pageSize));
         }
@@ -250,12 +241,18 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <returns></returns>
         public ActionResult SearchProductByProductName(string productName)
         {
-            ViewBag.ProductNew = productRepository.GetProducts();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
             var model = productRepository.SearchProductByProductName(productName);
             return View(model);
+        }
+        public ActionResult ProductDetails(int productId)
+        {
+            var model = productRepository.GetProductByProcductCode(productId);
+            ViewBag.ListCategory = categoryRepository.GetCategories();
+            return View("ProductDetails", model);
         }
     }
 }

@@ -1,8 +1,81 @@
-﻿
-@{
-    ViewData["Title"] = "ProductDetails";
+﻿@{
+    ViewData["Title"] = "Danh mục sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    IEnumerable<Product> productByCategory = ViewBag.ProductByCategory as IEnumerable<Product>;
+    IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
+    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
+    IEnumerable<Product> productDetails = ViewBag.ProductDetails as IEnumerable<Product>;
+}
 
-<h2>ProductDetails</h2>
-
+<!--======== Category ============-->
+<section class="detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-3">
+                <div class="lcate">
+                    <h6>Danh mục sản phẩm</h6>
+                    <ul>
+                        @Html.Partial("~/Views/Home/VerticalMenu.cshtml", category)
+                    </ul>
+                </div>
+                <div class="lcate">
+                    <h6>Color</h6>
+                    <ul class="color">
+                        <li><input type="radio" name="color" id="coll1"><label for="coll1">LightSalmon <span>13</span></label></li>
+                        <li><input type="radio" name="color" id="coll2"><label for="coll2">Dark Salmon <span>23</span></label></li>
+                        <li><input type="radio" name="color" id="coll3"><label for="coll3">Tomato <span>5</span></label></li>
+                        <li><input type="radio" name="color" id="coll4"><label for="coll4">Deep Sky Blue<span>10</span></label></li>
+                        <li><input type="radio" name="color" id="coll5"><label for="coll5">Electric Purple<span>9</span></label></li>
+                        <li><input type="radio" name="color" id="coll6"><label for="coll6">Atlantis<span>11</span></label></li>
+                        <li><input type="radio" name="color" id="coll7"><label for="coll7">Deep Lilac <span>4</span></label></li>
+                    </ul>
+                </div>
+                <div class="lcate">
+                    <h6>Filter By Price</h6>
+                    <div class="filter">
+                        <input type="hidden" id="range_46" class="irs-hidden-input">
+                        <a href="#" class="button">Filter</a>
+                    </div>
+                </div>
+                <div class="lcate">
+                    <h6>Size</h6>
+                    <div class="lcatesize">
+                        <ul>
+                            <li title="M" data-toggle="tooltip" data-placement="top"><input type="radio" name="size" checked="checked" id="size1"><label for="size1">M</label></li>
+                            <li title="S" data-toggle="tooltip" data-placement="top"><input type="radio" name="size" id="size2"><label for="size2">S</label></li>
+                            <li title="L" data-toggle="tooltip" data-placement="top"><input type="radio" name="size" id="size3"><label for="size3">L</label></li>
+                            <li title="SL" data-toggle="tooltip" data-placement="top"><input type="radio" name="size" id="size4"><label for="size4">SL</label></li>
+                            <li title="XL" data-toggle="tooltip" data-placement="top"><input type="radio" name="size" id="size5"><label for="size5">XL</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lcate">
+                    <div class="lcateimg">
+                        <a href="#">
+                            <img src="../images/cate.jpg" alt="cartgory" class="img-responsive">
+                        </a>
+                        <div class="inover">
+                            <h3>Sale<br> 50%<br> Off</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           @Html.Partial("ProductDetailsPartial", productDetails)
+            <!--======== Featured Product ============-->
+            <div class="product">
+                <div class="col-sm-12 text-center">
+                    <h2 class="heading">Sản phẩm liên quan</h2>
+                </div>
+                <div class="col-sm-12 text-center">
+                    <div class="owl-carousel pbox">
+                        @Html.Partial("_ProductPartialHost", productHost)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--======== /Category ============-->

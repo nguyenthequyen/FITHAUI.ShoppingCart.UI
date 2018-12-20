@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using FITHAUI.ShoppingCart.UI.Models;
 using FITHAUI.ShoppingCart.UI.Repository;
 using Microsoft.AspNetCore.Http;
+using FITHAUI.ShoppingCart.UI.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
@@ -28,9 +31,22 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 ViewBag.NumberVisitAmount = homeRepository.GetNumberVisitor();
             }
             ModelState.Clear();
-            ViewBag.ProductNew = productRepository.GetProducts();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            if (cart == null)
+            {
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            else
+            {
+                ViewBag.cart = cart;
+                ViewBag.quanty = cart.Sum(x => x.Quantity);
+                ViewBag.total = cart.Sum(item => item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
             return View();
         }
         /// <summary>
@@ -40,19 +56,27 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         /// <returns></returns>
         public ActionResult SearchProductByProductName(string productName)
         {
-            ViewBag.ProductNew = productRepository.GetProducts();
-            ViewBag.ProductHost = productRepository.GetProductsHost();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
             var model = productRepository.SearchProductByProductName(productName);
             return View(model);
         }
         public ActionResult MenuPartial()
         {
-            var category = categoryRepository.GetMenuCategories();
+            var category = categoryRepository.GetAllCategories();
             return PartialView(category);
         }
-
+        public ActionResult ProductDetails(int productId)
+        {
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            ViewBag.Category = categoryRepository.GetAllCategories();
+            ViewBag.ProductDetails = productRepository.ProductDetails(productId);
+            var model = productRepository.ProductDetails(productId);
+            return View(model);
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

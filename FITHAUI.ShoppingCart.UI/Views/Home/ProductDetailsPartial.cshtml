@@ -1,0 +1,77 @@
+﻿@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
+{
+    <div class="col-sm-12 col-lg-9 padded">
+        <div class="col-sm-12 col-lg-5">
+            <div class="image">
+                <a href="../images/big1.jpg" title="" class="cloud-zoom" id='zoom1'>
+                    <img src="../images/big1.jpg" title="" alt="" id="image" />
+                </a>
+            </div>
+            <div id="controler">
+                <div class="thumbView image-additional">
+                    <a href="../images/big1.jpg" title="" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '../images/big1.jpg' "><img src="../images/small1.jpg" title="" alt="" onclick="largelink('../images/big1.jpg')" /></a>
+                    <a href="../images/big2.jpg" title="" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '../images/big2.jpg' "><img src="../images/small2.jpg" title="" alt="" onclick="largelink('../images/big2.jpg')" /></a>
+                    <a href="../images/big3.jpg" title="" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '../images/big3.jpg' "><img src="../images/small3.jpg" title="" alt="" onclick="largelink('../images/big3.jpg')" /></a>
+                </div>
+                <a class="pagerPrev"><i class="fa fa-angle-left"></i></a>
+                <a class="pagerNext"><i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-7">
+            <h4>@item.ProductName</h4>
+            <p class="price" style="font-size:14px">
+                <span>
+                    @{
+                        var price = item.ProductPrice;
+                        var cost = (price * item.ProductSale) / 100;
+                    }
+                    @String.Format(info, "{0:c}", cost)
+                </span><span class="del" style="color: #666; text-decoration: line-through;">
+                    @String.Format(info, "{0:c}", item.ProductPrice)
+                </span>
+            </p>
+            <ul class="brand">
+                <li>Nhãn hiệu: <a href="#">@item.ProductBrand</a></li>
+                <li>Mã sản phẩm: @item.ProductCode</li>
+                <li>Sold By: <a href="#">Labore Magna</a></li>
+                <li>
+                    Tình trạng: <i class="fa fa-check-square-o"></i>
+                    @{
+                        if (item.ProductStatus == 1)
+                        {
+                            <span>Còn hàng</span>
+                        }
+                        else if (item.ProductStatus == 1)
+                        {
+                            <span>Hết hàng</span>
+                        }
+                        else
+                        {
+                            <span>Chưa xác định</span>
+                        }
+                    }
+                </li>
+            </ul>
+            <h6>Mô tả sản phẩm</h6>
+            <p>@item.ProductDescriptionLong</p>
+            <h6>Chọn màu</h6>
+            <ul class="colors">
+                <li title="Yellow"><input type="radio" name="color" checked="checked" id="color01"><label for="color01"></label></li>
+                <li class="blue" title="Blue "><input type="radio" name="color" id="color02"><label for="color02"></label></li>
+                <li class="lime" title="Lime"><input type="radio" name="color" id="color03"><label for="color03"></label></li>
+                <li class="silver" title="Silver"><input type="radio" name="color" id="color04"><label for="color04"></label></li>
+                <li class="pink" title="Pink"><input type="radio" name="color" id="color05"><label for="color05"></label></li>
+            </ul>
+            <ul class="incrtevalue">
+                <li><a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.ProductId" title="Add to Cart" class="button"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<style>
+    .product .price .del {
+    }
+</style>

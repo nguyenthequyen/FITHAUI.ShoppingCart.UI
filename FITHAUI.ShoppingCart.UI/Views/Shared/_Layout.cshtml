@@ -70,7 +70,7 @@
                 <!-- Logo -->
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 text-center">
                     <div class="search">
-                        <form  method="post" asp-action="SearchProductByProductName" asp-controller="Home">
+                        <form method="post" asp-action="SearchProductByProductName" asp-controller="Home">
                             <input type="search" name="productName" id="productName" placeholder="Tìm kiếm">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -89,31 +89,46 @@
                     <div class="cartbox basket">
                         <i class="fa fa-cart-plus fa-2x"></i>
                         <span><b>Giỏ hàng</b></span>
-                        <span>2 sản phẩm <i class="fa fa-angle-down"></i></span>
+                        <span>
+                            @if (ViewBag.quanty == null)
+                            {
+                                <span>Giỏ hàng trống</span>
+                            }
+                            else
+                            {
+                                <span>@ViewBag.quanty sản phẩm</span>
+                            }
+                            <i class="fa fa-angle-down"></i>
+                        </span>
                         <ul class="shopdata">
                             <li class="cartempty">
                                 <table>
                                     <tr>
-                                        <td><a href="#">Giỏ hàng trống</a></td>
+                                        <td><a asp-controller="Cart" asp-action="ViewCart" title="View">Xem giỏ hàng</a></td>
                                     </tr>
                                 </table>
                             </li>
                             <li class="cartfull">
                                 <table>
-                                    <tr>
-                                        <td><a href="#"><img src="~/images/tt.jpg" alt="imgname"></a></td>
-                                        <td><a href="#">Kielbasa hamburg</a> <br> - <small>Select Green</small></td>
-                                        <td>X <br>1</td>
-                                        <td>$ 56</td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="#"><img src="~/images/tt.jpg" alt="imgname"></a></td>
-                                        <td><a href="#">Kielbasa hamburg</a> <br> - <small>Select Green</small></td>
-                                        <td>X <br>1</td>
-                                        <td>$ 56</td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
+                                    @if (ViewBag.cart != null)
+                                    {
+                                        foreach (var item in ViewBag.cart)
+                                        {
+                                            <tr>
+                                                <td class="text-center"><img class="height-img-cart" src="~/images/Product/@item.Product.ProductImage" alt="cartimg"></td>
+                                                <td><a href="#">@item.Product.ProductName</a> <br></td>
+                                                <td><br>@item.Quantity</td>
+                                                <td>@(item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100)</td>
+                                                <td><a asp-action="Remove" asp-controller="Cart" asp-route-productId="@item.Product.ProductId" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></a></td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td class="text-center" colspan="6">Chưa có sản phẩm trong giỏ hàng</td>
+                                        </tr>
+                                    }
                                 </table>
                             </li>
                             <li class="cartbutton">
@@ -138,21 +153,21 @@
                             <li class="singlesub">
                                 <a class="active" asp-controller="Home" asp-action="Index" title="Trang chủ"><i class="fa fa-angle-double-left"></i>Trang chủ</a>
                             </li>
-                            @*<li><a asp-action="About" asp-controller="Home" title="About">Giới thiệu</a></li>*@
-                            <li>
-                                <a href="javascript:void(0)" title="Catlog">Danh mục sản phẩm<i class="fa fa-angle-down"></i></a>
+                            <li class="singlesub">
+                                <a href="javascript:void(0)" title="Pages">Danh mục sản phẩm<i class="fa fa-angle-down"></i></a>
                                 <!-- SUBMENU -->
                                 <div class="submenus">
-                                    @{
-                                        IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
-                                        @Html.Partial("~/Views/Home/MenuPartial.cshtml", category);
-                                    }
+                                    <ul>
+                                        @{
+                                            IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+                                            @Html.Partial("~/Views/Home/MenuPartial.cshtml", category);
+                                        }
+                                    </ul>
                                 </div>
                                 <!-- /SUBMENU -->
                             </li>
                             <li><a asp-controller="Dashboard" asp-action="Index" title="Layout">Trang Admin</a></li>
                             <li><a asp-controller="Product" asp-action="GetAllProductList" title="">Product List</a></li>
-                            @*<li><a href="contact.html" title="Contact">Liên hệ</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -187,6 +202,7 @@
         <script src="~/js/custom.js"></script>
         <!--=========Switch Color Js=============-->
         <script src="~/js/switch-color.js"></script>
+        <script src="~/js/zoom.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

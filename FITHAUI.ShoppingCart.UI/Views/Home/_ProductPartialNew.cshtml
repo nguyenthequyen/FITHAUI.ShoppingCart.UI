@@ -1,11 +1,14 @@
-﻿@foreach (var item in Model)
+﻿@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
 {
     <div class="item">
         <span class="new">New</span>
         <ul class="viewcart">
-            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Giỏ hàng"><i class="fa fa-cart-plus"></i></a></li>
+            <li><a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.ProductId" data-toggle="tooltip" data-placement="right" title="Thêm vào giỏ"><i class="fa fa-eye"></i></a></li>
             <li><a href="#" data-toggle="tooltip" data-placement="right" title="Yêu thích"><i class="fa fa-heart"></i></a></li>
-            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fa fa-eye"></i></a></li>
+            <li><a asp-action="ProductDetails" asp-controller="Home" asp-route-productId="@item.ProductId" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fa fa-eye"></i></a></li>
         </ul>
         <a href="#">
             <img src="~/images/Product/@item.ProductImage" alt="shirt" class="normal">
@@ -22,6 +25,16 @@
             }
         </ul>
         <p>@item.ProductName</p>
-        <p class="price"><span>@item.ProductPrice</span><span class="del">@item.ProductPrice</span></p>
+        <p class="price">
+            <span>
+            @{ 
+                var price = item.ProductPrice;
+                var cost = (price * item.ProductSale) / 100;
+            }
+                @String.Format(info, "{0:c}", cost)
+            </span><span class="del">
+                @String.Format(info, "{0:c}", item.ProductPrice)
+            </span>
+        </p>
     </div>
 }

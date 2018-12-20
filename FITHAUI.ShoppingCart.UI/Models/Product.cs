@@ -50,7 +50,8 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// </summary>
         [DisplayName("Mô tả chi tiết")]
         [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
-        public string ProductDescriptionLong { get; set; }        /// <summary>
+        public string ProductDescriptionLong { get; set; }
+        /// <summary>
         /// Mô tả sản phẩm
         /// </summary>
         [DisplayName("Mô tả ngắn")]
@@ -68,6 +69,9 @@ namespace FITHAUI.ShoppingCart.UI.Models
         [DisplayName("Mã sản phẩm")]
         [Required(ErrorMessage = "Mã sản phẩm không được để trống")]
         public string ProductCode { get; set; }
+        [DisplayName("Nhãn hiệu")]
+        [Required(ErrorMessage = "Nhãn hiệu không được để trống")]
+        public string ProductBrand { get; set; }
         /// <summary>
         /// Ngày tạo
         /// </summary>
@@ -85,7 +89,8 @@ namespace FITHAUI.ShoppingCart.UI.Models
         public int ProductNew { get; set; }
         [DisplayName("Loại sản phẩm")]
         public int? CategoryId { get; set; }
-
+        [DisplayName("Giảm giá")]
+        public int? ProductSale { get; set; }
         public virtual Category Category { get; set; }
         public Product()
         {

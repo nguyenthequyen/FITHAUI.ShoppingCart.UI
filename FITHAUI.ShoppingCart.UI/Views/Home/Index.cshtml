@@ -4,8 +4,9 @@
 @{
     IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
     IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
-    IEnumerable<Product> productSearch =ViewBag.ProductSearch as IEnumerable<Product>;
+    IEnumerable<Product> productSearch = ViewBag.ProductSearch as IEnumerable<Product>;
     IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+    IEnumerable<CartIndexViewModel> cart = ViewBag.cart as IEnumerable<CartIndexViewModel>;
 }
 <section>
     <div class="container">
@@ -93,7 +94,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="latest">
                         <div class="owl-carousel pbox">
-                            @Html.Partial("_ProductPartialHost", productHost)
+
+                            @Html.Partial("_ProductPartialNew", productNew)
                         </div>
                     </div>
                 </div>
