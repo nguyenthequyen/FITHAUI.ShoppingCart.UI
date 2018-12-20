@@ -1,12 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "ViewCart";
+    ViewData["Title"] = "Xem giỏ hàng";
 }
-@model CartIndexViewModel
 @{
-    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
-    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
-    IEnumerable<Product> productSearch =ViewBag.ProductSearch as IEnumerable<Product>;
     IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
 }
 <!--======== Fix Button  =================-->
@@ -30,39 +26,34 @@
                             <tr>
                                 <th class="text-center">Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Size</th>
+                                <th>Giảm giá</th>
                                 <th>Số lượng</th>
                                 <th class="text-right">Đơn giá</th>
                                 <th class="text-right">Tổng tiền</th>
+                                <th class="text-right"></th>
                             </tr>
-                            <tr>
-                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
-                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
-                                <td>e19</td>
-                                <td>
-                                    <ul>
-                                        <li><input type="text" class="inputtext" placeholder="1"></li>
-                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
-                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
-                                    </ul>
-                                </td>
-                                <td class="text-right">$ 56</td>
-                                <td class="text-right">$ 56</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center"><a href="#" title="Kielbasa hamburg"><img src="~/images/tt.jpg" alt="cartimg"></a></td>
-                                <td><a href="#">Kielbasa hamburg</a> <br><small>- Select Green</small></td>
-                                <td>e19</td>
-                                <td>
-                                    <ul>
-                                        <li><input type="text" class="inputtext" placeholder="1"></li>
-                                        <li><button title="Update" data-toggle="tooltip" data-placement="top"><i class="fa fa-refresh"></i></button></li>
-                                        <li><button title="Remove" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash"></i></button></li>
-                                    </ul>
-                                </td>
-                                <td class="text-right">$ 56</td>
-                                <td class="text-right">$ 56</td>
-                            </tr>
+                            @if (ViewBag.cart != null)
+                            {
+                                foreach (var item in ViewBag.cart)
+                                {
+                                    <tr>
+                                        <td class="text-center"><img class="height-img-cart" src="~/images/Product/@item.Product.ProductImage" alt="cartimg"></td>
+                                        <td>@item.Product.ProductName</td>
+                                        <td>@item.Product.ProductSale %</td>
+                                        <td><input type="text" class="inputtext" placeholder="1" value="@item.Quantity"></td>
+                                        <td class="text-right">@item.Product.ProductPrice</td>
+                                        <td class="text-right">@(item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100)</td>
+                                        <td><a asp-action="Remove" asp-controller="Cart" asp-route-productId="@item.Product.ProductId" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></a></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="text-center" colspan="6">Chưa có sản phẩm trong giỏ hàng</td>
+                                </tr>
+                            }
+
                         </table>
                     </div>
                 </div>
@@ -70,20 +61,8 @@
                     <div class="col-sm-12 col-lg-4 col-lg-offset-8 Rpadded">
                         <table class="table table-bordered">
                             <tr>
-                                <td class="text-right"><strong>Sub-Total:</strong></td>
-                                <td class="text-right"><span class="WebRupee"></span>$ 1,100.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Eco Tax (-2.00):</strong></td>
-                                <td class="text-right"><span class="WebRupee"></span>$ 2.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>VAT (20%):</strong></td>
-                                <td class="text-right"><span class="WebRupee"></span>$ 220.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"><strong>Total:</strong></td>
-                                <td class="text-right"><span class="WebRupee"></span>$ 1,322.00</td>
+                                <td class="text-right"><strong>Tổng tiền:</strong></td>
+                                <td class="text-right"><span class="WebRupee"></span> @ViewBag.total</td>
                             </tr>
                         </table>
                     </div>

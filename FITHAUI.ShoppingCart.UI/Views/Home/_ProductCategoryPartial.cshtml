@@ -5,10 +5,9 @@
 {
     <div class="col-sm-12 col-lg-3 item">
         <ul class="viewcart">
-            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-cart-plus"></i></a></li>
+            <li><a asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@item.ProductId" data-toggle="tooltip" data-placement="right" title="Thêm vào giỏ"><i class="fa fa-shopping-cart"></i></a></li>
             <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Compare"><i class="fa fa-refresh"></i></a></li>
-            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Click to View"><i class="fa fa-eye"></i></a></li>
+            <li><a asp-action="ProductDetails" asp-controller="Home" asp-route-productId="@item.ProductId" data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fa fa-eye"></i></a></li>
         </ul>
         <a href="#" class="proimg">
             <img src="~/images/Product/@item.ProductImage" alt="skirt" class="normal">

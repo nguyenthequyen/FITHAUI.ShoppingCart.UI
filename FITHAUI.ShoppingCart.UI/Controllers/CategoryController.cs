@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FITHAUI.ShoppingCart.UI.Models;
 using FITHAUI.ShoppingCart.UI.Repository;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
@@ -19,6 +20,78 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         {
             var category = categoryRepository.GetCategories();
             return PartialView("~Views/Category/_CategoryPartial.cshtml", category);
+        }
+        public IActionResult GetAllCategories(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            ModelState.Clear();
+            var model = categoryRepository.GetAllCategories();
+            if (model == null)
+            {
+                return View("EmptyProduct");
+            }
+            else
+            {
+                return View("~/Views/Category/GetAllCategories.cshtml", model.ToPagedList(pageIndex, pageSize));
+            }
+        }
+        public IActionResult GetCategoryByCategoryId(int categoryId)
+        {
+            var model = categoryRepository.GetCategoryByCategoryId(categoryId);
+            return View("~/Views/Category/EditCategory.cshtml", model);
+        }
+        public IActionResult EditCategory(Category category)
+        {
+            var model = categoryRepository.EditCategory(category);
+            return Redirect("GetAllCategories");
+        }
+        public IActionResult CategoryDetails(string categoryId)
+        {
+            return View("~/Views/Category/CategoryDetails.cshtml");
+        }
+        public IActionResult InsertCategory()
+        {
+            return View("InsertCategory");
+        }
+        public IActionResult CreatedCategory(Category category)
+        {
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        TempData["success"] = "Thêm thành công!";
+                        return View("GetAllCategories");
+                    }
+                    else
+                    {
+                        if (categoryRepository.CreatedCategory(category))
+                        {
+                            TempData["success"] = "Thêm thành công!";
+                            return Redirect("GetAllCategories");
+                        }
+                        else
+                        {
+                            TempData["error"] = "Thêm thất bại!";
+                            return Redirect("GetAllCategories");
+                        }
+                    }
+                }
+                else
+                {
+                    TempData["error"] = "Thêm thất bại!";
+                    return Redirect("/Identity/Account/Login");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Thêm thất bại!";
+                Console.WriteLine(ex.Message);
+                return Redirect("GetAllCategories");
+            }
         }
     }
 }
