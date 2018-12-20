@@ -93,7 +93,17 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         {
             var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-
+            if (cart == null)
+            {
+                TempData["error"] = "Giỏ hàng trống!";
+                return Redirect("/");
+            }
+            else
+            {
+                ViewBag.ProductNew = productRepository.GetProductsNew();
+                ViewBag.ProductHost = productRepository.GetProductsHot();
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
             ViewBag.Category = categoryRepository.GetAllCategories();

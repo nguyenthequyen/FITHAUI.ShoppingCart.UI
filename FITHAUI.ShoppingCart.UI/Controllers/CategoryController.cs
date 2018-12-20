@@ -64,11 +64,6 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        TempData["success"] = "Thêm thành công!";
-                        return View("GetAllCategories");
-                    }
-                    else
-                    {
                         if (categoryRepository.CreatedCategory(category))
                         {
                             TempData["success"] = "Thêm thành công!";
@@ -79,6 +74,11 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
                             TempData["error"] = "Thêm thất bại!";
                             return Redirect("GetAllCategories");
                         }
+                    }
+                    else
+                    {
+                        TempData["success"] = "Thêm thành công!";
+                        return View("GetAllCategories");
                     }
                 }
                 else

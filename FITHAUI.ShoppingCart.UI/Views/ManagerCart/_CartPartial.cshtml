@@ -2,16 +2,25 @@
 @{
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
-@foreach (var item in Model)
+@if (Model == null)
 {
     <tr class="text-center">
-        <th class="text-left">@item.Name</th>
-        <th class="text-left">@item.Phone</th>
-        <th class="text-left">@item.Address</th>
-        <th class="text-left">@item.Email</th>
-        <th class="text-left">@item.AllProduct</th>
-        <th class="text-left">
-            @String.Format(info, "{0:c}", item.AllPrice)
-        </th>
+        <th colspan="6">Chưa có thông tin giỏ hàng</th>
     </tr>
-}   
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <th class="text-left">@item.Name</th>
+            <th class="text-left">@item.Phone</th>
+            <th class="text-left">@item.Address</th>
+            <th class="text-left">@item.Email</th>
+            <th class="text-left">@item.AllProduct</th>
+            <th class="text-left">
+                @String.Format(info, "{0:c}", item.AllPrice)
+            </th>
+        </tr>
+    }
+}

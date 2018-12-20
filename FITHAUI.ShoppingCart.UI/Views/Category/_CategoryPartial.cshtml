@@ -1,20 +1,22 @@
-﻿@foreach (var item in Model){
-<form method="post" asp-controller="Category">
-    <tr class="text-center">
-        <th class="text-left">@item.CategoryId</th>
-        <th class="text-left">@item.CategoryCode</th>
-        <th class="text-left">@item.CategoryName</th>
-        <th>
-            <div class="pl-3 float-left btn-edit">
-                <a asp-action="CategoryDetails" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><i class="fas fa-info-circle"></i></a>
-            </div>
-            <div class="pl-3 float-left btn-edit">
-                <a asp-action="GetCategoryByCategoryId" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><i class="fas fa-edit text-success"></i></a>
-            </div>
-            <div class="pl-3 float-left btn-edit">
-                <a asp-action="DeleteCategory" asp-controller="Category" asp-route-categoryId="@item.CategoryId" class="delete-product"><i class="fas fa-trash-alt text-danger"></i></a>
-            </div>
-        </th>
-    </tr>
-</form>
+﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.Category>
+@foreach (var item in Model)
+{
+    <form method="post" asp-controller="Category">
+        <tr class="text-center">
+            <th class="text-left">@item.CategoryId</th>
+            <th class="text-left">@item.CategoryCode</th>
+            <th class="text-left">@item.CategoryName</th>
+            <th>
+                <div class="pl-3 float-left btn-edit">
+                    <a asp-action="CategoryDetails" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><i class="fas fa-info-circle"></i></a>
+                </div>
+                <div class="pl-3 float-left btn-edit">
+                    <a asp-action="GetCategoryByCategoryId" asp-controller="Category" asp-route-categoryId="@item.CategoryId"><i class="fas fa-edit text-success"></i></a>
+                </div>
+                <div class="pl-3 float-left btn-edit">
+                    <a asp-action="DeleteCategory" asp-controller="Category" asp-route-categoryId="@item.CategoryId" class="delete-product"><i class="fas fa-trash-alt text-danger"></i></a>
+                </div>
+            </th>
+        </tr>
+    </form>
 }

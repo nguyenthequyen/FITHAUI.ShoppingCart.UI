@@ -208,12 +208,12 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var check = productRepository.DeleteProduct(productId);
             if (check)
             {
-                TempData["success"] = "Xóa sản phẩm  {0} thành công" + productId;
+                TempData["success"] = "Xóa sản phẩm "+ productId+ " thành công";
                 return Redirect("GetAllProductList");
             }
             else
             {
-                TempData["error"] = "Xóa sản phẩm  {0} thất bại" + productId;
+                TempData["error"] = "Xóa sản phẩm " + productId + " thất bại, sản phẩm đang được sử dụng";
                 return Redirect("GetAllProductList");
             }
         }
