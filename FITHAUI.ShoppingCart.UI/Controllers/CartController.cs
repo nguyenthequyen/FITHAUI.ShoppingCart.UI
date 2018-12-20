@@ -9,67 +9,88 @@ using System.Collections.Generic;
 
 namespace FITHAUI.ShoppingCart.UI.Controllers
 {
-    public class CartController : BaseController
+
+    public class CartController : Controller
     {
         ProductRepository productRepository = new ProductRepository();
         HomeRepository homeRepository = new HomeRepository();
         CategoryRepository categoryRepository = new CategoryRepository();
-        public IActionResult Index(int productId)
+        public IActionResult Index()
         {
-            ViewBag.Category = categoryRepository.GetMenuCategories();
-            return View("ViewCart", new CartIndexViewModel
+            var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            if (cart != null)
             {
-                Cart = GetCart()
-            });
+                ViewBag.cart = cart;
+                ViewBag.quanty = cart.Sum(x => x.Quantity);
+                ViewBag.total = cart.Sum(item => item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            else
+            {
+                ViewBag.Category = categoryRepository.GetAllCategories();
+            }
+            return View("ViewCart");
+        }
+
+        public RedirectToActionResult AddToCart(int productId)
+        {
+            if (SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart") == null)
+            {
+                List<CartLine> cart = new List<CartLine>();
+                cart.Add(new CartLine { Product = productRepository.GetProductByProcductCode(productId), Quantity = 1 });
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            }
+            else
+            {
+                List<CartLine> cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+                int index = isExist(productId);
+                if (index != -1)
+                {
+                    cart[index].Quantity++;
+                }
+                else
+                {
+                    cart.Add(new CartLine { Product = productRepository.GetProductByProcductCode(productId), Quantity = 1 });
+                }
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Remove(int productId)
+        {
+            List<CartLine> cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            int index = isExist(productId);
+            cart.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("Index");
+        }
+
+        private int isExist(int productId)
+        {
+            List<CartLine> cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].Product.ProductId.Equals(productId))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
         public IActionResult ViewCart()
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
-            return View();
+            ViewBag.Category = categoryRepository.GetAllCategories();
+            return RedirectToAction("Index");
         }
         public IActionResult CheckOut()
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
-            return View();
-        }
-
-        public Cart GetCart()
-        {
-            Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
-            return cart;
-        }
-
-        public void SaveCart(Cart cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-        }
-
-        public RedirectToActionResult AddToCart(int productId)
-        {
-            Product product = productRepository.GetProductByProcductCode(productId);
-            if (product != null)
-            {
-                Cart cart = GetCart();
-                cart.AddItem(product, 1);
-                SaveCart(cart);
-            }
-            return RedirectToAction("Index");
-        }
-
-        public RedirectToActionResult RemoveFromCart(int productId)
-        {
-            Product product = productRepository.GetProductByProcductCode(productId);
-            if (product != null)
-            {
-                Cart cart = GetCart();
-                cart.RemoveLine(product);
-                SaveCart(cart);
-            }
-            return RedirectToAction("Index");
+            ViewBag.Category = categoryRepository.GetAllCategories();
+            return View("CheckOut");
         }
 
     }

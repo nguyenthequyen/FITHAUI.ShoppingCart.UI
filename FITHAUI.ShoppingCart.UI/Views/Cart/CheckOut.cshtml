@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "CheckOut";
+    ViewData["Title"] = "Xác nhận giỏ hàng";
 }
 <!--======== Fix Button  =================-->
 <ul class="fixbutton">
@@ -14,86 +14,51 @@
 <div class="checkout">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-lg-8">
+            <div class="col-12">
                 <!--===== Details ==========-->
                 <div class="legend">
-                    <h6>Personal Information</h6>
+                    <h6>Thông tin giỏ hàng</h6>
                     <!--======= Nav tabs ===========-->
-                    <ul>
-                        <li class="guest active"><a href="#guest" data-toggle="tab">Order as a guest </a></li>
-                        <li class="signin"><a href="#sign" data-toggle="tab">Sign In</a></li>
-                    </ul>
-                    <!-- Tab panes -->
                     <div class="tab-content">
                         <!--====== Guest =======-->
                         <div class="tab-pane active" id="guest">
                             <form>
-                                <div class="form-control">
-                                    <label class="col-xs-4 col-sm-4 col-lg-4">
-                                        Title
-                                    </label>
-                                    <div class="col-xs-4 col-sm-4 col-lg-2">
-                                        <input type="radio" id="mr" name="gender">
-                                        <label for="mr" class="radio">Male</label>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 col-lg-2">
-                                        <input type="radio" id="mrs" name="gender">
-                                        <label for="mrs" class="radio">Female.</label>
-                                    </div>
-                                </div>
-                                <div class="form-control">
-                                    <label class="col-sm-12 col-lg-4">
-                                        First name
-                                    </label>
-                                    <div class="col-sm-12 col-lg-8">
-                                        <input type="text" name="fname" class="textprop">
-                                    </div>
-                                </div>
-                                <div class="form-control">
-                                    <label class="col-sm-12 col-lg-4">
-                                        Last name
-                                    </label>
-                                    <div class="col-sm-12 col-lg-8">
-                                        <input type="text" name="lname" class="textprop">
-                                    </div>
-                                </div>
-                                <div class="form-control">
-                                    <label class="col-sm-12 col-lg-4">
-                                        Email
-                                    </label>
-                                    <div class="col-sm-12 col-lg-8">
-                                        <input type="text" name="email" class="textprop">
-                                    </div>
-                                </div>
-                                <div class="form-control">
-                                    <p class="para">Create an account (optional)<br><b>And save time on your next order!</b></p>
-                                </div>
-                                <div class="form-control">
-                                    <label class="col-sm-12 col-lg-4">
-                                        Password
-                                    </label>
-                                    <div class="col-sm-12 col-lg-8">
-                                        <input type="password" name="Password" class="textprop">
-                                    </div>
-                                </div>
-                                <div class="form-control">
-                                    <label class="col-sm-12 col-lg-4">
-                                        Birthdate
-                                    </label>
-                                    <div class="col-sm-12 col-lg-8">
-                                        <input type="text" name="dob" class="textprop" placeholder="MM/DD/YYYY">
-                                        <p class="example">(E.g.: 05/31/1970)</p>
-                                        <p><input type="checkbox" name="partner" id="partner"><label for="partner" class="checkbox">Receive offers from our partners</label></p>
-                                        <p><input type="checkbox" name="notice" id="notice"><label for="notice" class="checkbox">Sign up for our newsletter You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</label></p>
-                                    </div>
-                                </div>
+                                @if (ViewBag.cart != null)
+                                {
+                                    foreach (var item in ViewBag.cart)
+                                    {
+                                        <tr>
+                                            <td class="text-center"><img class="height-img-cart" src="~/images/Product/@item.Product.ProductImage" alt="cartimg"></td>
+                                            <td>@item.Product.ProductName</td>
+                                            <td>@item.Product.ProductSale %</td>
+                                            <td><input type="text" class="inputtext" placeholder="1" value="@item.Quantity"></td>
+                                            <td class="text-right">@item.Product.ProductPrice</td>
+                                            <td class="text-right">@(item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100)</td>
+                                            <td><a asp-action="Remove" asp-controller="Cart" asp-route-productId="@item.Product.ProductId" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="text-center" colspan="6">Chưa có sản phẩm trong giỏ hàng</td>
+                                    </tr>
+                                }
+                            </form>
+                        </div>
+                        <!--====== Sign =======-->
+                        <div class="tab-pane" id="sign">
+                            <form>
                                 <div class="form-control last">
-                                    <div class="col-sm-12 text-right">
-                                        <input type="submit" value="continue" class="button">
+                                    <div class="col-sm-12 text-right ">
+                                        <a asp-area="Identity" asp-page="/Account/Login" class="button" title="Login">Tiếp tục</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
                         <!--====== Sign =======-->
                         <div class="tab-pane" id="sign">
                             <form>
@@ -125,11 +90,11 @@
                 </div>
                 <!--===== Address ==========-->
                 <div class="legend disable">
-                    <h6>Address</h6>
+                    <h6>Thông tin khách hàng</h6>
                     <form>
                         <div class="form-control">
                             <label class="col-sm-12 col-lg-4">
-                                Company
+                                Họ tên khách hàng:
                             </label>
                             <div class="col-sm-12 col-lg-8">
                                 <input type="text" name="company" class="textprop">
@@ -137,7 +102,7 @@
                         </div>
                         <div class="form-control">
                             <label class="col-sm-12 col-lg-4">
-                                Address 1*
+                                Số điện thoại 1: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
                                 <input type="text" name="address1" class="textprop">
@@ -145,156 +110,40 @@
                         </div>
                         <div class="form-control">
                             <label class="col-sm-12 col-lg-4">
-                                Address 2*
+                                Email 1: *
+                            </label>
+                            <div class="col-sm-12 col-lg-8">
+                                <input type="text" name="address1" class="textprop">
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label class="col-sm-12 col-lg-4">
+                                Địa chỉ 1: *
+                            </label>
+                            <div class="col-sm-12 col-lg-8">
+                                <input type="text" name="address1" class="textprop">
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <label class="col-sm-12 col-lg-4">
+                                Địa chỉ 2: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
                                 <input type="text" name="address2" class="textprop">
                             </div>
                         </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                City*
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="city" class="textprop">
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Postal Code*
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="code" class="textprop">
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                State*
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="state" class="textprop">
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Country*
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="country" class="textprop">
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Invoice
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="checkbox" id="invoice" name="gender" class="textprop">
-                                <label for="invoice" class="checkbox invoice">Use this address for invoice too</label>
-                            </div>
-                        </div>
                         <div class="form-control last">
-                            <div class="col-sm-12 text-right">
-                                <input type="submit" value="continue" class="button">
+                            <div class="row">
+                                <div class="col-sm-6 text-left float-left">
+                                    <input type="submit" value="Quay lại" class="button">
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <input type="submit" value="Tiếp tục" class="button">
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!--===== Shipping Method ==========-->
-                <div class="legend disable">
-                    <h6>Shipping Method</h6>
-                    <form>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Shipping Rate
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="radio" id="flat" name="flat" class="textprop">
-                                <label for="flat" class="radio">Flat Shipping Rate - £3.81 </label>
-                            </div>
-                        </div>
-                        <div class="form-control last">
-                            <div class="col-sm-12 text-right">
-                                <input type="submit" value="continue" class="button">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!--===== Payment ==========-->
-                <div class="legend disable">
-                    <h6>Payment</h6>
-                    <form>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                COD
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="radio" id="cod" name="cod" class="textprop">
-                                <label for="cod" class="radio">Cash On Delivery</label>
-                            </div>
-                        </div>
-                        <div class="form-control last">
-                            <div class="col-sm-12 text-right">
-                                <input type="submit" value="continue" class="button">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-4">
-                <div class="legend">
-                    <h6>Shopping Cart</h6>
-                    <a class="para cartitem" title="Item">1 Items</a>
-                    <div class="cartbox">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><img src="~/images/tt.jpg" alt="hamburg"></td>
-                                    <td>Kielbasa hamburg</td>
-                                    <td>$50.99</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="~/images/tt.jpg" alt="hamburg"></td>
-                                    <td>Kielbasa hamburg</td>
-                                    <td>$50.99</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="~/images/tt.jpg" alt="hamburg"></td>
-                                    <td>Kielbasa hamburg</td>
-                                    <td>$50.99</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>SubTotal</td>
-                                <td><b>$50.99</b></td>
-                            </tr>
-                            <tr>
-                                <td>Shipping</td>
-                                <td><b>$5.00</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="ltable">
-                        <tbody>
-                            <tr>
-                                <td>Total (tax excl.)</td>
-                                <td><b>$50.99</b></td>
-                            </tr>
-                            <tr>
-                                <td>Taxes</td>
-                                <td><b>$5.00</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <ul class="secure">
-                    <li><i class="fa fa-shield fa-2x"></i> Security policy (edit with Customer reassurance module)</li>
-                    <li><i class="fa fa-truck fa-2x"></i> Delivery policy (edit with Customer reassurance module)</li>
-                    <li><i class="fa fa-exchange fa-2x"></i> Return policy (edit with Customer reassurance module)</li>
-                </ul>
             </div>
         </div>
     </div>

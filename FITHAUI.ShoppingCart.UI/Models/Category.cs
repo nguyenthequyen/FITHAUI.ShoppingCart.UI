@@ -21,16 +21,20 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// Tên loại sản phẩm
         /// </summary>
         [DisplayName("Loại sản phẩm")]
-        [Required(ErrorMessage ="Loại sản phẩm không được để trống")]
+        [Required(ErrorMessage = "Loại sản phẩm không được để trống")]
         public string CategoryName { get; set; }
+        [DisplayName("Mã loại sản phẩm")]
+        [Required(ErrorMessage = "Mã loại sản phẩm không được để trống")]
+        public string CategoryCode { get; set; }
         public virtual ICollection<Product> Products { get; set; }
 
-        public Category(List<SelectListItem> categories, int categoryId, string categoryName, ICollection<Product> products)
+        public Category(List<SelectListItem> categories, int categoryId, string categoryName, ICollection<Product> products, string categoryCode)
         {
             Categories = categories;
             CategoryId = categoryId;
             CategoryName = categoryName;
             Products = products;
+            CategoryCode = categoryCode;
         }
 
         public Category()

@@ -230,7 +230,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             var model = productRepository.GetProductByCategoryId(categoryName);
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductByCategory = productRepository.GetProductByCategoryId(categoryName);
             return PartialView("~/Views/Home/GetProductByCategoryId.cshtml", model.ToPagedList(pageIndex, pageSize));
         }
@@ -243,7 +243,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         {
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
-            ViewBag.Category = categoryRepository.GetMenuCategories();
+            ViewBag.Category = categoryRepository.GetAllCategories();
             ViewBag.ProductSearch = productRepository.SearchProductByProductName(productName);
             var model = productRepository.SearchProductByProductName(productName);
             return View(model);

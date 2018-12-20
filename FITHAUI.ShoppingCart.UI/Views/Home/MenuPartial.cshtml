@@ -9,9 +9,7 @@
     {
         foreach (var item in group.GroupBy(x => x.CategoryName))
         {
-            <ul class="col-sm-12 col-lg-3">
-                <li><a asp-action="GetProductByCategoryId" asp-controller="Product" asp-route-categoryName="@item.Key"> @item.Key</a></li>
-            </ul>
+            <li><a asp-action="GetProductByCategoryId" asp-controller="Product" asp-route-categoryName="@item.Key">@item.Key</a></li>
         }
     }
 }
