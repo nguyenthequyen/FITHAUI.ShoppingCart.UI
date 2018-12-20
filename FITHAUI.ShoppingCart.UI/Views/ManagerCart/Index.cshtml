@@ -2,8 +2,8 @@
     ViewData["Title"] = "InsertProduct";
     Layout = "~/Areas/Identity/Pages/_Layout.cshtml";
 }
-@*@using X.PagedList.Mvc.Core;
-    @model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Product>*@
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<FITHAUI.ShoppingCart.UI.Models.Cart>
 <div class="content">
     <div class="page-content-wrapper">
         <div class="container-fluid">
@@ -39,19 +39,16 @@
                                         <th>Điện thoại</th>
                                         <th>Địa chỉ</th>
                                         <th>Email</th>
-                                        <th>Tên sản phẩm</th>
                                         <th>Số lượng</th>
                                         <th>Tổng tiền</th>
-                                        <th>Tình trạng</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <partial name="_CartPartial" />
+                                    <partial name="~/Views/ManagerCart/_CartPartial.cshtml" />
                                 </tbody>
                             </table>
-                            @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
-                                @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))*@
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trên @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("GetAllProductList", new { page }))
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,15 @@
 @{
     ViewData["Title"] = "Xác nhận giỏ hàng";
 }
+
+@model FITHAUI.ShoppingCart.UI.Models.Cart;
+@{
+    IEnumerable<Product> productNew = ViewBag.ProductNew as IEnumerable<Product>;
+    IEnumerable<Product> productHost = ViewBag.ProductHost as IEnumerable<Product>;
+    IEnumerable<Product> productSearch = ViewBag.ProductSearch as IEnumerable<Product>;
+    IEnumerable<Category> category = ViewBag.Category as IEnumerable<Category>;
+    IEnumerable<CartIndexViewModel> cart = ViewBag.cart as IEnumerable<CartIndexViewModel>;
+}
 <!--======== Fix Button  =================-->
 <ul class="fixbutton">
     <li><a href="#categorie" data-toggle="modal"><span>Categories</span><i class="fa fa-align-justify"></i></a></li>
@@ -17,13 +26,13 @@
             <div class="col-12">
                 <!--===== Details ==========-->
                 <div class="legend">
-                    <h6>Thông tin giỏ hàng</h6>
+                    @*<h6>Thông tin giỏ hàng</h6>*@
                     <!--======= Nav tabs ===========-->
                     <div class="tab-content">
                         <!--====== Guest =======-->
                         <div class="tab-pane active" id="guest">
-                            <form>
-                                @if (ViewBag.cart != null)
+
+                            @*@if (ViewBag.cart != null)
                                 {
                                     foreach (var item in ViewBag.cart)
                                     {
@@ -43,51 +52,44 @@
                                     <tr>
                                         <td class="text-center" colspan="6">Chưa có sản phẩm trong giỏ hàng</td>
                                     </tr>
-                                }
+                                }*@
                         </div>
                     </div>
                 </div>
                 <!--===== Address ==========-->
-                <div class="legend disable">
-                    <h6>Thông tin khách hàng</h6>
+                <form method="post" asp-action="CreateOrder">
+                    <div class="legend disable">
+                        <h6>Thông tin khách hàng</h6>
                         <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Họ tên khách hàng:
+                            <label asp-for="Name" class="col-sm-12 col-lg-4">
+                                Họ tên khách hàng: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="company" class="textprop">
+                                <input asp-for="Name" type="text" name="Name" class="textprop">
                             </div>
                         </div>
                         <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
+                            <label asp-for="Phone" class="col-sm-12 col-lg-4">
                                 Số điện thoại 1: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="address1" class="textprop">
+                                <input asp-for="Phone" type="text" name="Phone" class="textprop">
                             </div>
                         </div>
                         <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
+                            <label asp-for="Email" class="col-sm-12 col-lg-4">
                                 Email 1: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="address1" class="textprop">
+                                <input asp-for="Email" type="text" name="Email" class="textprop">
                             </div>
                         </div>
                         <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Địa chỉ 1: *
+                            <label asp-for="Address" class="col-sm-12 col-lg-4">
+                                Địa chỉ: *
                             </label>
                             <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="address1" class="textprop">
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="col-sm-12 col-lg-4">
-                                Địa chỉ 2: *
-                            </label>
-                            <div class="col-sm-12 col-lg-8">
-                                <input type="text" name="address2" class="textprop">
+                                <input asp-for="Address" type="text" name="Address" class="textprop">
                             </div>
                         </div>
                         <div class="form-control last">
@@ -100,11 +102,11 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!--======= /CHECKOUT =============-->
 <!--======== Modal ==========-->

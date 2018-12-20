@@ -1,4 +1,17 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<FITHAUI.ShoppingCart.UI.Models.Cart>
+@{
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+@foreach (var item in Model)
+{
+    <tr class="text-center">
+        <th class="text-left">@item.Name</th>
+        <th class="text-left">@item.Phone</th>
+        <th class="text-left">@item.Address</th>
+        <th class="text-left">@item.Email</th>
+        <th class="text-left">@item.AllProduct</th>
+        <th class="text-left">
+            @String.Format(info, "{0:c}", item.AllPrice)
+        </th>
+    </tr>
+}   

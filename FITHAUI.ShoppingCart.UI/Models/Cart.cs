@@ -13,10 +13,6 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// </summary>
         public int CartId { get; set; }
         /// <summary>
-        /// Id người dùng
-        /// </summary>
-        public int UserId { get; set; }
-        /// <summary>
         /// Tên người dùng
         /// </summary>
         public string Name { get; set; }
@@ -39,9 +35,22 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// <summary>
         /// Tổng giá
         /// </summary>
-        public decimal AllPrice { get; set; }
+        public decimal? AllPrice { get; set; }
         public List<CartLine> listLine = new List<CartLine>();
 
+        public Cart(string name, string phone, string address, string email, int allProduct, decimal? allPrice)
+        {
+            Name = name;
+            Phone = phone;
+            Address = address;
+            Email = email;
+            AllProduct = allProduct;
+            AllPrice = allPrice;
+        }
+        public Cart()
+        {
+
+        }
         public void AddItem(Product product, int quantity)
         {
             CartLine line = listLine.Where(p => p.Product.ProductId == product.ProductId).FirstOrDefault();
@@ -62,7 +71,12 @@ namespace FITHAUI.ShoppingCart.UI.Models
 
         public Decimal? ComputeTotalValue()
         {
-            return listLine.Sum(e => e.Product.ProductPrice * e.Quantity);
+            return listLine.Sum(e => e.Product.ProductPrice * e.Quantity * (100 - e.Product.ProductSale) /100 );
+        }
+
+        public int TotalProduct()
+        {
+            return listLine.Sum(e => e.Quantity);
         }
 
         public void Clear()

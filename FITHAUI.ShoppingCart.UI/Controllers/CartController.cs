@@ -15,6 +15,7 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
         ProductRepository productRepository = new ProductRepository();
         HomeRepository homeRepository = new HomeRepository();
         CategoryRepository categoryRepository = new CategoryRepository();
+        CartRepository cartRepository = new CartRepository();
         public IActionResult Index()
         {
             var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
@@ -87,12 +88,44 @@ namespace FITHAUI.ShoppingCart.UI.Controllers
             ViewBag.Category = categoryRepository.GetAllCategories();
             return RedirectToAction("Index");
         }
+
         public IActionResult CheckOut()
         {
+            var cart = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            ViewBag.cart = cart;
+
             ViewBag.ProductNew = productRepository.GetProductsNew();
             ViewBag.ProductHost = productRepository.GetProductsHot();
             ViewBag.Category = categoryRepository.GetAllCategories();
             return View("CheckOut");
+        }
+
+        public IActionResult CreateOrder(Cart cart)
+        {
+            var cartSession = SessionHelper.GetObjectFromJson<List<CartLine>>(HttpContext.Session, "cart");
+            decimal? price = 0;
+            int total = 0;
+            foreach (var item in cartSession)
+            {
+                price += (item.Product.ProductPrice * item.Quantity * (100 - item.Product.ProductSale) / 100);
+                total += item.Quantity;
+            }
+            cart.AllProduct = total;
+            cart.AllPrice = price;
+            cartRepository.InsertCart(cart);
+            
+            foreach (var item in cartSession)
+            {
+                var cartDetails = new CartDetail();
+                cartDetails.CartId = cartRepository.GetCartID();
+                cartDetails.Amount = item.Quantity;
+                cartDetails.ProductId = item.Product.ProductId;
+                cartRepository.InsertCartDetails(cartDetails);
+            }
+            ViewBag.Category = categoryRepository.GetAllCategories();
+            ViewBag.ProductNew = productRepository.GetProductsNew();
+            ViewBag.ProductHost = productRepository.GetProductsHot();
+            return View("~/Views/Home/Index.cshtml");
         }
 
     }

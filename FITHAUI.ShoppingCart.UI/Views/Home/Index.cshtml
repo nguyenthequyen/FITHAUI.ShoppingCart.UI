@@ -95,7 +95,7 @@
                     <div class="tab-pane active" id="latest">
                         <div class="owl-carousel pbox">
 
-                            @Html.Partial("_ProductPartialNew", productNew)
+                            @Html.Partial("~/Views/Home/_ProductPartialNew.cshtml", productNew)
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
             </div>
             <div class="col-sm-12 text-center">
                 <div class="owl-carousel pbox">
-                    @Html.Partial("_ProductPartialHost", productHost)
+                    @Html.Partial("~/Views/Home/_ProductPartialHost.cshtml", productHost)
                 </div>
             </div>
         </div>

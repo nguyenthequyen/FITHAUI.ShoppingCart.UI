@@ -7,6 +7,8 @@ namespace FITHAUI.ShoppingCart.UI.Models
 {
     public class CartDetail
     {
+
+
         /// <summary>
         /// Id chi tiết giỏ hàng
         /// </summary>
@@ -23,5 +25,16 @@ namespace FITHAUI.ShoppingCart.UI.Models
         /// Số lượng sản phẩm
         /// </summary>
         public int Amount { get; set; }
+        public CartDetail(int cartDetailId, int productId, int cartId, int amount)
+        {
+            CartDetailId = cartDetailId;
+            ProductId = productId;
+            CartId = cartId;
+            Amount = amount;
+        }
+        public CartDetail()
+        {
+
+        }
     }
 }
